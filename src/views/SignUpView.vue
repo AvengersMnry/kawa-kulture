@@ -1,19 +1,25 @@
 <template>
-    <ion-button @click="$router.back()"><i class="fa-solid fa-chevron-left"></i></ion-button>
-    <h1>BIENVENUE</h1>
-    <h1>S'inscrire</h1>
-    <form method="post" @submit.prevent="register">
-        <ion-item>
-            <ion-label position="floating">Email</ion-label>
-            <ion-input placeholder="Enter text" type="email" name="email" v-model="register_form.email"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input placeholder="Enter text" type="password" name="password"
-                v-model="register_form.password"></ion-input>
-        </ion-item>
-        <ion-button type="submit">Créer mon compte</ion-button>
-    </form>
+    <ion-content>
+        <img src="../../public/img/arabica.png" alt="Branche de caféier">
+        <ion-button fill="outline" shape="round" color="light" class="back-arrow" @click="$router.push('/')"><i
+                class="fa-solid fa-chevron-left"></i></ion-button>
+        <form class="ion-margin" method="post" @submit.prevent="register">
+            <h1>Bienvenue sur <strong>Kawa !</strong></h1>
+            <h2>Commençons votre inscription</h2>
+            <ion-item fill="outline">
+                <ion-label position="floating">Adresse mail</ion-label>
+                <ion-input required placeholder="john.doe@email.com"></ion-input>
+            </ion-item>
+            <br>
+            <ion-item fill="outline">
+                <ion-label position="floating">Mot de passe</ion-label>
+                <ion-input required placeholder="Saisissez un mot de passe"></ion-input>
+            </ion-item>
+            <br>
+            <ion-button class="ion-margin" color="tertiary" type="submit">Créer mon compte</ion-button>
+            <p>J'ai déjà un compte ! <a href="/login">Connexion</a></p>
+        </form>
+    </ion-content>
 </template>
 
 <script>
@@ -42,4 +48,26 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+ion-content {
+    --background: transparent;
+    background-color: #ff9017;
+}
+
+ion-item {
+    width: 75%;
+    margin: 0 auto;
+}
+
+img {
+    width: 70%;
+    display: flex;
+    margin: auto;
+}
+
+h1,
+h2 {
+    color: white;
+    margin: 1rem 0;
+}
+</style>
