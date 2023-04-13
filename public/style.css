@@ -19,6 +19,11 @@ body {
     background-size: cover;
 }
 
+.bg-orange {
+    --background: transparent;
+    background-color: #ff9017;
+}
+
 .back-arrow {
     position: absolute;
     top: 10px;

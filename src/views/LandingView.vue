@@ -1,22 +1,24 @@
 <template>
-  <div class="bg-img">
-    <ion-content class="ion-margin-top">
-      <img src="../assets/logos/white_logo_transparent_background.png" alt="Logo">
-      <ion-text class="ion-margin" color="light">
-        <h2>Une bonne journée commence avec un bon café</h2>
-      </ion-text>
-      <ion-row class="ion-margin ion-justify-content-center">
-        <ion-button class="ion-margin" @click="goSignUpPage()">Je crée mon compte</ion-button>
-        <ion-button class="ion-margin" @click="goLoginPage()">Je me connecte</ion-button>
-      </ion-row>
-    </ion-content>
-  </div>
+  <ion-page>
+    <div class="bg-img">
+      <ion-content class="ion-margin-top">
+        <img src="../assets/logos/white_logo_transparent_background.png" alt="Logo">
+        <ion-text class="ion-margin" color="light">
+          <h2>Une bonne journée commence avec un bon café</h2>
+        </ion-text>
+        <ion-row class="ion-margin ion-justify-content-center">
+          <ion-button class="ion-margin" @click="goSignUpPage()">Je crée mon compte</ion-button>
+          <ion-button class="ion-margin" @click="goLoginPage()">Je me connecte</ion-button>
+        </ion-row>
+      </ion-content>
+    </div>
+  </ion-page>
 </template>
 
 <script>
-import router from '@/router';
-import { IonButton, IonRow, IonContent, IonText } from '@ionic/vue';
 import { defineComponent } from 'vue';
+import router from '@/router';
+import { IonButton, IonRow, IonContent, IonText, IonPage } from '@ionic/vue';
 
 export default defineComponent({
   name: 'LandingView',
@@ -25,6 +27,7 @@ export default defineComponent({
     IonRow,
     IonContent,
     IonText,
+    IonPage
   },
   setup() {
     function goLoginPage() {
