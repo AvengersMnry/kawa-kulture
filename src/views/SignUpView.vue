@@ -19,7 +19,7 @@
                 <br>
                 <ion-button class="ion-margin" color="tertiary" type="submit">Créer mon compte</ion-button>
             </form>
-            <p>J'ai déjà un compte ! <router-link to="login">Connexion</router-link></p>
+            <p>J'ai déjà un compte ! <a href="/login">Connexion</a></p>
         </ion-content>
     </ion-page>
 </template>

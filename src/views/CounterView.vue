@@ -18,7 +18,7 @@
   <script>
   import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 export default {
-    name: 'Tab3Page',
+    name: 'CounterView',
     components: {
         IonPage,
         IonHeader,

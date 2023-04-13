@@ -24,10 +24,6 @@ const router = createRouter({
       redirect: '/tabs/tab1',
     },
     {
-      path: '/profil',
-      redirect: '/tabs/tab4',
-    },
-    {
       path: '/tabs/',
       component: () => import('@/views/TabsPage.vue'),
       children: [
@@ -37,15 +33,15 @@ const router = createRouter({
         },
         {
           path: 'tab1',
-          component: () => import('@/views/Tab1Page.vue')
+          component: () => import('@/views/ReceipesView.vue')
         },
         {
           path: 'tab2',
-          component: () => import('@/views/Tab2Page.vue')
+          component: () => import('@/views/CoffeesView.vue')
         },
         {
           path: 'tab3',
-          component: () => import('@/views/Tab3Page.vue')
+          component: () => import('@/views/CounterView.vue')
         },
         {
           path: 'tab4',
@@ -55,21 +51,5 @@ const router = createRouter({
     },
   ]
 })
-
-
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/login' && auth.currentUser) {
-//     next('/')
-//     console.log("Déja connecté");
-//     return;
-//   }
-
-//   if (to.matched.some(record => record.meta.requiresAuth) && !auth.currentUser) {
-//     console.log("Pas connecté !");
-//     next('/login')
-//     return;
-//   }
-//   next();
-// })
 
 export default router

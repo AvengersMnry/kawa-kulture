@@ -2,8 +2,9 @@
     <ion-page>
         <ion-content class="bg-orange">
             <img src="../../public/img/arabica.png" alt="Branche de caféier">
-            <ion-button fill="outline" shape="round" color="light" class="back-arrow" @click="$router.back()"><i
-                    class="fa-solid fa-chevron-left"></i></ion-button>
+            <ion-button fill="outline" shape="round" color="light" class="back-arrow" @click="$router.back()">
+                <i class="fa-solid fa-chevron-left"></i>
+            </ion-button>
             <h1>Ravi de vous revoir</h1>
             <h2>Un café ? ☕️</h2>
             <form method="post" @submit.prevent="login">
@@ -14,8 +15,12 @@
                 <br>
                 <ion-item>
                     <ion-label position="floating">Mot de passe</ion-label>
-                    <ion-input placeholder="Enter text" type="password" name="password"
-                        v-model="login_form.password"></ion-input>
+                    <ion-input 
+                        placeholder="Enter text"
+                        type="password" name="password"
+                        v-model="login_form.password"
+                    >
+                    </ion-input>
                 </ion-item>
                 <br>
                 <ion-item class="transparent">
