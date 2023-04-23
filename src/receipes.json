@@ -6,6 +6,7 @@
         "Coffee"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/640px-A_small_cup_of_coffee.JPG",
+        "categories": ["Drink"],
         "id": 1
     },
     {
@@ -16,6 +17,7 @@
         "Steamed Milk"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Latte_at_Doppio_Ristretto_Chiang_Mai_01.jpg/509px-Latte_at_Doppio_Ristretto_Chiang_Mai_01.jpg",
+        "categories": ["Drink"],
         "id": 2
     },
     {
@@ -27,6 +29,7 @@
         "Foam"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Wet_Cappuccino_with_heart_latte_art.jpg",
+        "categories": ["Drink"],
         "id": 3
     },
     {
@@ -37,6 +40,7 @@
         "Hot Water"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg/1280px-Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg",
+        "categories": ["Drink"],
         "id": 4
     },
     {
@@ -46,6 +50,7 @@
         "1oz Espresso"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Tazzina_di_caff%C3%A8_a_Ventimiglia.jpg",
+        "categories": ["Drink"],
         "id": 5
     },
     {
@@ -55,6 +60,7 @@
         "2oz Espresso"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Doppio.jpg/2560px-Doppio.jpg",
+        "categories": ["Drink"],
         "id": 6
     },
     {
@@ -66,6 +72,7 @@
         "Chocolate"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Mocaccino-Coffee.jpg",
+        "categories": ["Drink"],
         "id": 7
     },
     {
@@ -75,6 +82,7 @@
         "Short pulled espresso"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Doppio_ristretto_Chiang_Mai.jpg",
+        "categories": ["Drink"],
         "id": 8
     },
     {
@@ -85,6 +93,7 @@
         "Steamed Milk"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Flat_white_coffee_with_pretty_feather_pattern.jpg",
+        "categories": ["Drink"],
         "id": 9
     },
     {
@@ -95,6 +104,7 @@
         "Ice cream"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/1/17/Vinoteca%2C_Smithfield%2C_London_%284485849609%29.jpg",
+        "categories": ["Drink"],
         "id": 10
     },
     {
@@ -107,6 +117,35 @@
         "Cream"
         ],
         "image": "https://upload.wikimedia.org/wikipedia/commons/6/61/Irish_coffee_glass.jpg",
+        "categories": ["Drink"],
         "id": 11
+    },
+    {
+        "title": "Tiramisu au café",
+        "description": "No desc. yet",
+        "ingredients": [
+        ],
+        "image": "https://cafes.trottet.ch/wp-content/uploads/2015/08/10151985_223038834557105_1865562391_n.png",
+        "categories": ["Dessert"],
+        "id": 12
+    },
+    {
+        "title": "Foie gras au café et à la crème de Whisky",
+        "description": "No desc. yet",
+        "ingredients": [
+        ],
+        "image": "https://img.cuisineaz.com/660x660/2015/12/02/i79171-foie-gras-au-cafe-et-a-la-creme-de-whisky.webp",
+        "categories": ["Meal"],
+        "id": 13
+    },
+    {
+        "title": "Pavés de biche au parfum de café",
+        "description": "No desc. yet",
+        "ingredients": [
+        ],
+        "image": "https://img.cuisineaz.com/660x660/2016/11/02/i91086-paves-de-biche-au-parfum-de-cafe.webp",
+        "categories": ["Meal"],
+        "id": 14
     }
+    
 ]
