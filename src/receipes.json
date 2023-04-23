@@ -1,0 +1,112 @@
+[
+    {
+        "title": "Café filtre",
+        "description": "Ce café préparé en faisant lentement passer de l'eau frémissante dans un filtre à café, rempli de café moulu. Il est en opposition avec la préparation de l'espresso.",
+        "ingredients": [
+        "Coffee"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/640px-A_small_cup_of_coffee.JPG",
+        "id": 1
+    },
+    {
+        "title": "Latte",
+        "description": "Pour un latte, utilisez deux doses d'espresso et deux tiers de lait chaud avec juste un peu de mousse sur le dessus. Il est le grand frère du cappucino !",
+        "ingredients": [
+        "Espresso",
+        "Steamed Milk"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Latte_at_Doppio_Ristretto_Chiang_Mai_01.jpg/509px-Latte_at_Doppio_Ristretto_Chiang_Mai_01.jpg",
+        "id": 2
+    },
+    {
+        "title": "Cappuccino",
+        "description": "Le cappuccino est un latte fait avec plus de mousse que le lait. Souvent saupoudré de poudre de cacao ou de cannelle. Attention à ne pas le confondre avec le latte ! Ils ont la même dose de café, mais on a ici plus de lait.",
+        "ingredients": [
+        "Espresso",
+        "Steamed Milk",
+        "Foam"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Wet_Cappuccino_with_heart_latte_art.jpg",
+        "id": 3
+    },
+    {
+        "title": "L'Americano, ou café allongé",
+        "description": "L'americano ou le café allongé est une variante du traditionnel espresso. Dilué avec de l'eau, il lui apporte plus de douceur.",
+        "ingredients": [
+        "Espresso",
+        "Hot Water"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg/1280px-Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg",
+        "id": 4
+    },
+    {
+        "title": "Espresso",
+        "description": "Ah l'espresso... Icône mondiale, c'est le café court par excellence. En fait, le nom « caffé espresso » se traduit par « café pressé », en référence à l'eau qui est poussée à travers le café finement moulu à une très haute pression.",
+        "ingredients": [
+        "1oz Espresso"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Tazzina_di_caff%C3%A8_a_Ventimiglia.jpg",
+        "id": 5
+    },
+    {
+        "title": "Double",
+        "description": "Le double espresso, aussi communément appelé café double, s'obtient en préparant deux espresso dans une tasse.",
+        "ingredients": [
+        "2oz Espresso"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Doppio.jpg/2560px-Doppio.jpg",
+        "id": 6
+    },
+    {
+        "title": "Café Mocha ou Mochaccino",
+        "description": "Au bar, il est servi habituellement dans un verre transparent, de façon que l'on puisse voir les différentes couches de café, de chocolat et la mousse de lait. Ce qui compose cette sorte de chocolat viennois corsé.",
+        "ingredients": [
+        "Espresso",
+        "Steamed Milk",
+        "Chocolate"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Mocaccino-Coffee.jpg",
+        "id": 7
+    },
+    {
+        "title": "Ristretto",
+        "description": "Un ristretto se prépare avec la même quantité de café qu'un espresso, mais avec moitié moins d'eau. Serré, et plein de goût, il est tout droit issu de la tradition italienne.",
+        "ingredients": [
+        "Short pulled espresso"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Doppio_ristretto_Chiang_Mai.jpg",
+        "id": 8
+    },
+    {
+        "title": "Flat White",
+        "description": "Ses origines se situent en Australie. À ne pas confondre avec le latte ou le cappuccino, cette boisson lactée est forte de café ! Elle séduit par sa texture veloutée caractéristique et ses arômes prononcés.",
+        "ingredients": [
+        "Espresso",
+        "Steamed Milk"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Flat_white_coffee_with_pretty_feather_pattern.jpg",
+        "id": 9
+    },
+    {
+        "title": "Affogato",
+        "description": "Le mot « affogato », signifie noyé, ce qui arrive à la crème glacée lorsqu'elle est arrosée de café chaud. Cette boisson-dessert italienne se compose d'une glace à la vanille !",
+        "ingredients": [
+        "Espresso",
+        "Ice cream"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/1/17/Vinoteca%2C_Smithfield%2C_London_%284485849609%29.jpg",
+        "id": 10
+    },
+    {
+        "title": "Irish",
+        "description": "Un Irish coffee ou café irlandais est un cocktail traditionnel de la cuisine irlandaise, à base de café chaud, de sucre roux, de whiskey et de crème. Il aurait été crée pendant la Seconde Guerre mondiale par un barman irlandais pour réchauffer les militaires frigorifiés.",
+        "ingredients": [
+        "Coffee",
+        "Whiskey",
+        "Sugar",
+        "Cream"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/61/Irish_coffee_glass.jpg",
+        "id": 11
+    }
+]
