@@ -1,5 +1,19 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router'
-// import { auth } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+
+const auth = getAuth();
+
+// Auth guard
+const requireAuth = (to, from, next) => {
+  let user = auth.currentUser
+  if (!user) {
+    console.log('Non connecté(e)')
+    next({ name: 'LandingView' })
+  } else {
+    console.log('Connecté(e)' + user.uid)
+    next()
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -22,10 +36,12 @@ const router = createRouter({
     {
       path: '/home',
       redirect: '/tabs/tab1',
+      beforeEnter: requireAuth
     },
     {
       path: '/tabs/',
       component: () => import('@/views/TabsPage.vue'),
+      beforeEnter: requireAuth,
       children: [
         {
           path: '',
