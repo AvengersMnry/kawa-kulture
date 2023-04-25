@@ -12,13 +12,13 @@ import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 /** END Framework IONIC **/
 
-import App from './App.vue'
-import { createApp } from 'vue'
+import { getAuth } from 'firebase/auth'
+import { app } from '../src/firebase'
 import router from './router'
+import App from './App.vue'
 import store from './store'
-import { getAuth } from 'firebase/auth';
-import { app } from '../src/firebase';
 import './registerServiceWorker'
+import { createApp } from 'vue'
 
 let appInstance;
 
