@@ -9,8 +9,8 @@
 <script>
 import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
+import { IonPage, IonButton, toastController } from '@ionic/vue';
 
-import { IonPage, IonButton } from '@ionic/vue';
 export default defineComponent({
     name: 'ProfilView',
     components: {
@@ -19,11 +19,25 @@ export default defineComponent({
     },
     setup() {
         const store = useStore();
+        
+        const presentToast = async (position) => {
+            const toast = await toastController.create({
+                message: 'Tu es bien déconnecté(e)',
+                duration: 1500,
+                position: position
+            });
+            
+            await toast.present();
+        };
+        
         const logout = () => {
+            presentToast('top');
             store.dispatch('logout');
-        }
+        };
+        
         return {
             logout,
+            presentToast
         }
     }
 })
