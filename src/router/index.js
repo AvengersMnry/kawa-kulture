@@ -1,55 +1,71 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { auth } from '../firebase'
+import { createRouter, createWebHistory } from '@ionic/vue-router'
+import { getAuth } from 'firebase/auth';
 
-import LandingView from '../views/LandingView.vue'
-import LoginView from '../views/LoginView.vue'
-import SignUpView from '../views/SignUpView.vue'
-import Home from '../views/HomeView.vue'
+const auth = getAuth();
 
-const routes = [
-  {
-    path: '/',
-    name: 'LandingView',
-    component: LandingView
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: Home,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/login',
-    name: 'LoginView',
-    component: LoginView
-  },
-  {
-    path: '/signup',
-    name: 'SignUpView',
-    component: SignUpView
-  },
-]
+// Auth guard
+const requireAuth = (to, from, next) => {
+  let user = auth.currentUser
+  if (!user) {
+    console.log('Non connecté(e)')
+    next({ name: 'LandingView' })
+  } else {
+    console.log('Connecté(e)' + user.uid)
+    next()
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
-
-router.beforeEach((to, from, next) => {
-  if (to.path === '/login' && auth.currentUser) {
-    next('/')
-    console.log("Déja connecté");
-    return;
-  }
-
-  if (to.matched.some(record => record.meta.requiresAuth) && !auth.currentUser) {
-    console.log("Pas connecté !");
-    next('/login')
-    return;
-  }
-  next();
+  routes: [
+    {
+      path: '/',
+      name: 'LandingView',
+      component: () => import('@/views/LandingView.vue')
+    },
+    {
+      path: '/signup',
+      name: 'SignUpView',
+      component: () => import('@/views/SignUpView.vue')
+    },
+    {
+      path: '/login',
+      name: 'LoginView',
+      component: () => import('@/views/LoginView.vue')
+    },
+    {
+      path: '/home',
+      redirect: '/tabs/tab1',
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/tabs/',
+      component: () => import('@/views/TabsPage.vue'),
+      beforeEnter: requireAuth,
+      children: [
+        {
+          path: '',
+          redirect: 'tab1'
+        },
+        {
+          path: 'tab1',
+          component: () => import('@/views/ReceipesView.vue')
+        },
+        {
+          path: 'tab2',
+          component: () => import('@/views/CoffeesView.vue')
+        },
+        {
+          path: 'tab3',
+          component: () => import('@/views/CounterView.vue')
+        },
+        {
+          path: 'tab4',
+          component: () => import('@/views/ProfilView.vue')
+        }
+      ]
+    },
+  ]
 })
 
 export default router

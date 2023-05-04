@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
 import router from '../router'
 import { auth } from '../firebase'
-import { 
+import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut 
+  signOut
 } from 'firebase/auth'
 
 export default createStore({
@@ -12,24 +12,23 @@ export default createStore({
     user: null
   },
   mutations: {
-
-    SET_USER (state, user) {
+    SET_USER(state, user) {
       state.user = user
     },
 
-    CLEAR_USER (state) {
+    CLEAR_USER(state) {
       state.user = null
     }
 
   },
   actions: {
-    async login ({ commit }, details) {
+    async login({ commit }, details) {
       const { email, password } = details
 
       try {
         await signInWithEmailAndPassword(auth, email, password)
       } catch (error) {
-        switch(error.code) {
+        switch (error.code) {
           case 'auth/user-not-found':
             alert("User not found")
             break
@@ -43,16 +42,15 @@ export default createStore({
       }
 
       commit('SET_USER', auth.currentUser)
-
-      router.push('/home')
+      router.push('/tabs/tab1')
     },
 
-    async register ({ commit }, details) {
-       const { email, password } = details
+    async register({ commit }, details) {
+      const { email, password } = details
       try {
         await createUserWithEmailAndPassword(auth, email, password)
       } catch (error) {
-        switch(error.code) {
+        switch (error.code) {
           case 'auth/email-already-in-use':
             alert("Email already in use")
             break
@@ -67,25 +65,24 @@ export default createStore({
             break
           default:
             alert("Something went wrong")
+            console.log(error)
         }
 
         return
       }
 
       commit('SET_USER', auth.currentUser)
-
-      router.push('/home')
+      router.push('/tabs/tab4')
     },
 
-    async logout ({ commit }) {
+    async logout({ commit }) {
       await signOut(auth)
 
       commit('CLEAR_USER')
-
       router.push('/login')
     },
 
-    fetchUser ({ commit }) {
+    fetchUser({ commit }) {
       auth.onAuthStateChanged(async user => {
         if (user === null) {
           commit('CLEAR_USER')
@@ -98,6 +95,5 @@ export default createStore({
         }
       })
     }
-    
   }
 })

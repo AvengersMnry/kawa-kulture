@@ -12,10 +12,24 @@ import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 /** END Framework IONIC **/
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import './registerServiceWorker'
+import { getAuth } from 'firebase/auth'
+import { app } from '../src/firebase'
 import router from './router'
+import App from './App.vue'
 import store from './store'
+import './registerServiceWorker'
+import { createApp } from 'vue'
 
-createApp(App).use(IonicVue).use(store).use(router).mount('#app')
+let appInstance;
+
+const auth = getAuth(app);
+
+auth.onAuthStateChanged(() => {
+    if (!appInstance) {
+      appInstance = createApp(App)
+        .use(IonicVue)
+        .use(store)
+        .use(router)
+        .mount('#app');
+    }
+});
