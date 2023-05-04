@@ -12,7 +12,7 @@
     "@ionic/vue-router": "^6.7.0",
     "core-js": "^3.8.3",
     "deepl": "^1.0.13",
-    "firebase": "^9.17.1",
+    "firebase": "^9.20.0",
     "ionicons": "^7.1.0",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13",

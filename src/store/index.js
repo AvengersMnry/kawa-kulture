@@ -42,7 +42,7 @@ export default createStore({
       }
 
       commit('SET_USER', auth.currentUser)
-      router.push('/tabs/tab4')
+      router.push('/tabs/tab1')
     },
 
     async register({ commit }, details) {
