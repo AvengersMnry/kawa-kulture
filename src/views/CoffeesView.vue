@@ -6,11 +6,7 @@
         </ion-toolbar>
       </ion-header>
       <ion-content :fullscreen="true">
-          <!-- <ion-toolbar>
-            <ion-title size="large">Accueil</ion-title>
-          </ion-toolbar> -->
         <p>Les cafés à Bordeaux</p>
-        <!-- <ExploreContainer name="Tab 1 page" /> -->
       </ion-content>
     </ion-page>
   </template>

@@ -19,30 +19,30 @@
           <ion-input :clear-input="true" placeholder="Mot de passe" type="password" name="password" v-model="handleConnexion.password"></ion-input>
         </ion-item>
         <br>
-        <ion-button class="ion-margin" type="submit">Se connecter</ion-button>
+        <ion-button class="ion-margin btn" type="submit">Se connecter</ion-button>
       </form>
       <p class="ion-margin">Pas encore inscrit ? <a href="/signup">Inscription</a></p>
-      <ion-button class="ion-margin" @click="openModal">Mot de passe oublié ?</ion-button>
+      <ion-button class="ion-margin btn" @click="openModal">Mot de passe oublié ?</ion-button>
       
-      <!-- Modal open when the user click on button for his reset password -->
-      <ion-modal class="ion-margin ion-padding" :is-open="showModal" @dismiss="showModal.valueOf = false">
+      <!-- Modal for reset password -->
+      <ion-modal class="" :is-open="showModal" @dismiss="showModal.valueOf = false">
         <ion-header>
           <ion-toolbar>
-            <ion-button @click="showModal = false">
-              <ion-icon name="close-outline"></ion-icon>
-            </ion-button>
             <ion-title>Réinitialiser</ion-title>
+            <ion-buttons>
+              <ion-button @click="showModal = false">Fermer</ion-button>
+            </ion-buttons>
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <p class="ion-margin">
+            Entrez l'adresse e-mail associée à votre compte.
           </p>
           <ion-item class="ion-margin">
-            <ion-label position="stacked">Adresse email</ion-label>
-            <ion-input :clear-input="true" placeholder="example@domain.com" type="email" name="email" v-model="handleConnexion.email"></ion-input>
+            <ion-input :clear-input="true" label="Adresse email" fill="outline" placeholder="example@domain.com" type="email" name="email" v-model="handleConnexion.email"></ion-input>
           </ion-item>
-          <ion-button class="ion-margin" @click="sendPasswordResetEmail(handleConnexion.email)">Envoyer un e-mail de réinitialisation</ion-button>
+          <ion-button class="ion-margin btn" id="sendSuccess" @click="sendResetPasswordEmail(handleConnexion.email)">Envoyer un e-mail de réinitialisation</ion-button>
+          <ion-toast :is-open="showToast" duration="4000" message="Un email contenant un lien a été envoyé." position="top" color="dark"></ion-toast>
         </ion-content>
       </ion-modal>
       
@@ -53,7 +53,7 @@
 <script>
 import { defineComponent, ref } from 'vue';
 import { useStore } from 'vuex';
-import { IonPage, IonInput, IonItem, IonLabel, IonButton, IonContent, IonModal, IonToolbar, IonIcon, IonHeader, IonTitle } from '@ionic/vue';
+import { IonPage, IonInput, IonItem, IonLabel, IonButton, IonContent, IonModal, IonToolbar, IonHeader, IonTitle, IonButtons, IonToast } from '@ionic/vue';
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 export default defineComponent ({
@@ -67,9 +67,10 @@ export default defineComponent ({
     IonContent,
     IonModal,
     IonToolbar,
-    IonIcon,
     IonHeader,
     IonTitle,
+    IonButtons,
+    IonToast
   },
   setup() {
     const auth = getAuth();
@@ -77,6 +78,8 @@ export default defineComponent ({
 
     const handleConnexion = ref({})
     const showModal = ref(false);
+    const showToast = ref(false);
+    const modalTimeout = ref(null);
     
     const login = () => {
       store.dispatch('login', handleConnexion.value)
@@ -89,11 +92,20 @@ export default defineComponent ({
     const sendResetPasswordEmail = (email) => {
       sendPasswordResetEmail(auth, email)
         .then(() => {
-          console.log('success');
+          showToast.value = true;
+          
+          modalTimeout.value = setTimeout(() => {
+            showModal.value = false;
+          }, 4000);
         })
         .catch((error) => {
           alert(error);
         });
+    }
+    
+    const closeModal = () => {
+      clearTimeout(modalTimeout.value);
+      showModal.value = false;
     }
 
     return {
@@ -102,6 +114,8 @@ export default defineComponent ({
       sendResetPasswordEmail,
       showModal,
       openModal,
+      closeModal,
+      showToast,
     }
   }
 })
@@ -134,7 +148,7 @@ a {
   color: #ffffff;
 }
 
-ion-button {
+.btn {
   --background: #436a31;
 }
 </style>
