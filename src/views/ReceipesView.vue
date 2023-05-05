@@ -8,7 +8,7 @@
     
     <ion-content :fullscreen="true">
       <ion-toolbar>
-        <ion-buttons>
+        <ion-buttons class="ion-justify-content-center">
           <ion-button :fill="currentCategory === 'All' ? 'outline' : 'clear'" @click="updateCategory('All')" :color="currentCategory === 'All' ? 'primary' : 'medium'">Toutes</ion-button>
           <ion-button :fill="currentCategory === 'Dessert' ? 'outline' : 'clear'" @click="updateCategory('Dessert')" :color="currentCategory === 'Dessert' ? 'primary' : 'medium'">Dessert</ion-button>
           <ion-button :fill="currentCategory === 'Drink' ? 'outline' : 'clear'" @click="updateCategory('Drink')" :color="currentCategory === 'Drink' ? 'primary' : 'medium'">Boisson</ion-button>
