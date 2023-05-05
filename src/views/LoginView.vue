@@ -41,7 +41,7 @@
           <ion-item class="ion-margin">
             <ion-input :clear-input="true" label="Adresse email" fill="outline" placeholder="example@domain.com" type="email" name="email" v-model="handleConnexion.email"></ion-input>
           </ion-item>
-          <ion-button class="ion-margin btn" id="sendSuccess" @click="sendResetPasswordEmail(handleConnexion.email)">Envoyer un e-mail de réinitialisation</ion-button>
+          <ion-button class="ion-margin btn" id="sendSuccess" @click="resetPassword(handleConnexion.email)">Envoyer un e-mail de réinitialisation</ion-button>
           <ion-toast :is-open="showToast" duration="4000" message="Un email contenant un lien a été envoyé." position="top" color="dark"></ion-toast>
         </ion-content>
       </ion-modal>
@@ -54,7 +54,6 @@
 import { defineComponent, ref } from 'vue';
 import { useStore } from 'vuex';
 import { IonPage, IonInput, IonItem, IonLabel, IonButton, IonContent, IonModal, IonToolbar, IonHeader, IonTitle, IonButtons, IonToast } from '@ionic/vue';
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 export default defineComponent ({
   name: 'LoginView',
@@ -73,10 +72,9 @@ export default defineComponent ({
     IonToast
   },
   setup() {
-    const auth = getAuth();
-    const store = useStore()
+    const store = useStore();
 
-    const handleConnexion = ref({})
+    const handleConnexion = ref({});
     const showModal = ref(false);
     const showToast = ref(false);
     const modalTimeout = ref(null);
@@ -89,18 +87,17 @@ export default defineComponent ({
       showModal.value = true;
     }
     
-    const sendResetPasswordEmail = (email) => {
-      sendPasswordResetEmail(auth, email)
+    const resetPassword = () => {
+      store.dispatch('resetPassword', handleConnexion.value.email)
         .then(() => {
           showToast.value = true;
-          
           modalTimeout.value = setTimeout(() => {
             showModal.value = false;
           }, 4000);
         })
-        .catch((error) => {
-          alert(error);
-        });
+        .catch(error => {
+          alert(error)
+        })
     }
     
     const closeModal = () => {
@@ -111,7 +108,7 @@ export default defineComponent ({
     return {
       handleConnexion,
       login,
-      sendResetPasswordEmail,
+      resetPassword,
       showModal,
       openModal,
       closeModal,
