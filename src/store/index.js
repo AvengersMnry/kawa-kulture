@@ -4,7 +4,8 @@ import { auth } from '../firebase'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  sendPasswordResetEmail
 } from 'firebase/auth'
 
 export default createStore({
@@ -18,6 +19,11 @@ export default createStore({
 
     CLEAR_USER(state) {
       state.user = null
+    },
+    
+    resetPasswordSuccess(state) {
+      state.passwordResetSuccess = true
+      state.resetPasswordError = null
     }
 
   },
@@ -75,6 +81,16 @@ export default createStore({
       router.push('/tabs/tab4')
     },
 
+    async resetPassword({ commit }, email) {
+      try {
+        await sendPasswordResetEmail(auth, email)
+        commit('resetPasswordSuccess')
+      } catch (error) {
+        commit('resetPasswordFailure', error)
+        throw error
+      }
+    },
+    
     async logout({ commit }) {
       await signOut(auth)
 
