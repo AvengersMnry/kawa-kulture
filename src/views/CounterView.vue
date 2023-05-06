@@ -9,21 +9,25 @@
       <h1>Combien de café bu aujourd'hui ☕️ ?</h1>
     </ion-content>
   </ion-page>
-  </template>
-  
-  <script>
-  import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+</template>
+
+<script>
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+} from "@ionic/vue";
 export default {
-    name: 'CounterView',
-    components: {
-        IonPage,
-        IonHeader,
-        IonToolbar,
-        IonTitle,
-        IonContent,
-    },
-    setup() {
-    }
-}
-  </script>
-  
+  name: "CounterView",
+  components: {
+    IonPage,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+  },
+  setup() {},
+};
+</script>
