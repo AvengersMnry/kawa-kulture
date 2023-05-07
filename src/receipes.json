@@ -110,5 +110,13 @@
     "image": "https://img.cuisineaz.com/660x660/2016/11/02/i91086-paves-de-biche-au-parfum-de-cafe.webp",
     "categories": ["Meal"],
     "id": 14
+  },
+  {
+    "title": "Éclair au café",
+    "description": "Composée de pâte à choux, de crème pâtissière et de fondant, ce gâteau a toujours eu un franc succès !",
+    "ingredients": [],
+    "image": "https://www.boulangerielouise.com/wp-content/uploads/2017/09/BOULANGERIE-LOUISE_ECLAIR-CAFE-AMBIANCE-scaled.jpg",
+    "categories": ["Dessert"],
+    "id": 14
   }
 ]

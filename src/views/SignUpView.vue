@@ -63,26 +63,9 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
-import {
-  IonPage,
-  IonContent,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonButton,
-  IonCheckbox,
-} from "@ionic/vue";
 export default defineComponent({
   name: "SignupView",
-  components: {
-    IonPage,
-    IonContent,
-    IonInput,
-    IonItem,
-    IonLabel,
-    IonButton,
-    IonCheckbox,
-  },
+  components: {},
   setup() {
     const store = useStore();
 

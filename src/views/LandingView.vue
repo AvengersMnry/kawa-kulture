@@ -25,17 +25,9 @@
 <script>
 import { defineComponent } from "vue";
 import router from "@/router";
-import { IonButton, IonRow, IonContent, IonText, IonPage } from "@ionic/vue";
-
 export default defineComponent({
   name: "LandingView",
-  components: {
-    IonButton,
-    IonRow,
-    IonContent,
-    IonText,
-    IonPage,
-  },
+  components: {},
   setup() {
     function goLoginPage() {
       router.push("/login");

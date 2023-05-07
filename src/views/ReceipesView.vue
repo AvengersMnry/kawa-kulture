@@ -50,37 +50,12 @@
   </ion-page>
 </template>
 <script>
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonButtons,
-  IonButton,
-} from "@ionic/vue";
 import { ref } from "vue";
 import receipesData from "../receipes.json";
 
 export default {
   name: "ReceipesView",
-  components: {
-    IonPage,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
-    IonButtons,
-    IonButton,
-  },
+  components: {},
   setup() {
     const receipes = ref(receipesData);
 

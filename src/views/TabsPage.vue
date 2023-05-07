@@ -31,16 +31,6 @@
 
 <script>
 import {
-  IonContent,
-  IonTabs,
-  IonTabBar,
-  IonTabButton,
-  IonLabel,
-  IonIcon,
-  IonPage,
-  IonRouterOutlet,
-} from "@ionic/vue";
-import {
   navigateOutline,
   mapOutline,
   speedometerOutline,
@@ -50,16 +40,7 @@ import {
 } from "ionicons/icons";
 export default {
   name: "TabsPage",
-  components: {
-    IonContent,
-    IonTabBar,
-    IonTabButton,
-    IonTabs,
-    IonLabel,
-    IonIcon,
-    IonPage,
-    IonRouterOutlet,
-  },
+  components: {},
   setup() {
     return {
       mapOutline,

@@ -99,37 +99,10 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
-import {
-  IonPage,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonButton,
-  IonContent,
-  IonModal,
-  IonToolbar,
-  IonHeader,
-  IonTitle,
-  IonButtons,
-  IonToast,
-} from "@ionic/vue";
 
 export default defineComponent({
   name: "LoginView",
-  components: {
-    IonPage,
-    IonInput,
-    IonItem,
-    IonLabel,
-    IonButton,
-    IonContent,
-    IonModal,
-    IonToolbar,
-    IonHeader,
-    IonTitle,
-    IonButtons,
-    IonToast,
-  },
+  components: {},
   setup() {
     const store = useStore();
 

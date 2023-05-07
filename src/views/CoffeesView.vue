@@ -12,22 +12,9 @@
 </template>
 
 <script>
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-} from "@ionic/vue";
 export default {
   name: "CoffeesView",
-  components: {
-    IonPage,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-  },
+  components: {},
   setup() {},
 };
 </script>

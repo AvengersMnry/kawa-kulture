@@ -39,37 +39,14 @@
 <script>
 import { defineComponent, reactive } from "vue";
 import { useStore } from "vuex";
-import {
-  IonPage,
-  IonButton,
-  IonTitle,
-  IonToolbar,
-  IonHeader,
-  IonContent,
-  IonAvatar,
-  toastController,
-  IonRow,
-  IonCol,
-  IonGrid,
-} from "@ionic/vue";
+import { toastController } from "@ionic/vue";
 
 // Importer le SDK Firebase Storage pour JavaScript
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default defineComponent({
   name: "ProfilView",
-  components: {
-    IonPage,
-    IonButton,
-    IonTitle,
-    IonToolbar,
-    IonHeader,
-    IonContent,
-    IonAvatar,
-    IonRow,
-    IonCol,
-    IonGrid,
-  },
+  components: {},
   setup() {
     const store = useStore();
     const state = reactive({
