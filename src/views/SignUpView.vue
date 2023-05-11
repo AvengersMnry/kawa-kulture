@@ -15,6 +15,17 @@
 
       <form class="ion-margin" method="post" @submit.prevent="register">
         <ion-item class="ion-margin">
+          <ion-label position="stacked">Prénom</ion-label>
+          <ion-input
+            required
+            :clear-input="true"
+            placeholder="George"
+            v-model="handleRegistration.username"
+          ></ion-input>
+        </ion-item>
+        <br />
+        
+        <ion-item class="ion-margin">
           <ion-label position="stacked">Email</ion-label>
           <ion-input
             required

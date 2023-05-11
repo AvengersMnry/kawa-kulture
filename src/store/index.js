@@ -1,20 +1,37 @@
 import { createStore } from "vuex";
 import router from "../router";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  where,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 export default createStore({
   state: {
-    user: null,
+    user: {
+      username: "",
+      docId: null,
+    },
   },
+
   mutations: {
     SET_USER(state, user) {
       state.user = user;
+    },
+
+    SET_USERNAME(state, username) {
+      state.user.username = username;
     },
 
     CLEAR_USER(state) {
@@ -27,7 +44,7 @@ export default createStore({
     },
   },
   actions: {
-    async login({ commit }, details) {
+    async login({ commit, state }, details) {
       const { email, password } = details;
 
       try {
@@ -45,16 +62,57 @@ export default createStore({
         }
         return;
       }
+      try {
+        // Récupérer l'ID de l'utilisateur
+        const uid = auth.currentUser.uid;
+        
+        // Récupérer le docId de l'utilisateur
+        const userDocRef = collection(db, "users");
 
-      commit("SET_USER", auth.currentUser);
-      router.push("/tabs/tab1");
+        // Créer une requête pour filtrer les documents par uid
+        const querySnapshot = await getDocs(
+          query(userDocRef, where("uid", "==", uid))
+        );
+
+        if (!querySnapshot.empty) {
+          // Récupérer le nom d'utilisateur du premier document correspondant
+          const docSnap = querySnapshot.docs[0].data().username;
+          commit("SET_USERNAME", docSnap);
+        } else {
+          console.log("Aucun document ne correspond à la requête!");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+
+      // Mettre à jour l'état de l'utilisateur dans le store
+      commit("SET_USER", state.user);
+      router.push("/tabs/tab4");
     },
 
-    async register({ commit }, details) {
-      const { email, password } = details;
+    async register({ commit, state }, details) {
+      const { email, password, username } = details;
+      let uid;
+
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        uid = userCredential.user.uid;
+
+        // Enregistrer le nom d'utilisateur dans Firestore
+        const docRef = await addDoc(collection(db, "users"), {
+          username: username,
+        });
+        console.log("Document written with ID: ", docRef.id);
+
+        // Mettre à jour le document Firestore avec l'ID de l'utilisateur Firebase Auth
+        await updateDoc(doc(db, "users", docRef.id), { uid: uid });
       } catch (error) {
+        console.error("Error adding document: ", error);
+
         switch (error.code) {
           case "auth/email-already-in-use":
             alert("Email already in use");
@@ -70,13 +128,15 @@ export default createStore({
             break;
           default:
             alert("Something went wrong");
-            console.log(error);
         }
 
         return;
       }
 
-      commit("SET_USER", auth.currentUser);
+      // Mettre à jour l'état de l'utilisateur dans le store
+      commit("SET_USER", state.user);
+      commit("SET_USERNAME", username);
+
       router.push("/tabs/tab4");
     },
 
@@ -109,6 +169,11 @@ export default createStore({
           }
         }
       });
+    },
+  },
+  getters: {
+    getUsername: (state) => {
+      return state.user ? state.user.username : null;
     },
   },
 });

@@ -52,7 +52,8 @@ img {
 
 ion-button {
   --background: #da7f2b;
-  --background-hover: #41240b;
+  font-weight: 500;
+  font-size: 1.1em;
   color: #f5f5f5;
   width: 100%;
 }

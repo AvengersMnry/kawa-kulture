@@ -11,7 +11,12 @@
 
           <ion-tab-button tab="tab2" href="/tabs/tab2">
             <ion-icon aria-hidden="true" :icon="navigateOutline" />
-            <ion-label>Trouver un coffee</ion-label>
+            <ion-label>Coffee shop</ion-label>
+          </ion-tab-button>
+          
+          <ion-tab-button tab="tab2" href="/tabs/tab2">
+            <ion-icon aria-hidden="true" :icon="navigateOutline" />
+            <ion-label>Accueil</ion-label>
           </ion-tab-button>
 
           <ion-tab-button tab="tab3" href="/tabs/tab3">
@@ -20,7 +25,7 @@
           </ion-tab-button>
 
           <ion-tab-button tab="tab4" href="/tabs/tab4">
-            <ion-icon aria-hidden="true" :icon="personOutline" />
+            <ion-icon aria-hidden="true" :icon="personCircleOutline" />
             <ion-label>Profil</ion-label>
           </ion-tab-button>
         </ion-tab-bar>
@@ -36,7 +41,7 @@ import {
   speedometerOutline,
   bookOutline,
   cafeOutline,
-  personOutline,
+  personCircleOutline,
 } from "ionicons/icons";
 export default {
   name: "TabsPage",
@@ -48,7 +53,7 @@ export default {
       navigateOutline,
       bookOutline,
       cafeOutline,
-      personOutline,
+      personCircleOutline,
     };
   },
 };
