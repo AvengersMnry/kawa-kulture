@@ -31,7 +31,15 @@ export default createStore({
     },
 
     SET_USERNAME(state, username) {
-      state.user.username = username;
+      if (state.user) {
+        state.user.username = username;
+      } else {
+        state.user = {
+          username: username,
+          docId: null,
+        };
+      }
+      localStorage.setItem("username", username);
     },
 
     CLEAR_USER(state) {
@@ -63,21 +71,25 @@ export default createStore({
         return;
       }
       try {
-        // Récupérer l'ID de l'utilisateur
+        // Retrieve User ID
         const uid = auth.currentUser.uid;
-        
-        // Récupérer le docId de l'utilisateur
+
+        // Retrieve the user's docId
         const userDocRef = collection(db, "users");
 
-        // Créer une requête pour filtrer les documents par uid
+        // Create a query to filter documents by uid
         const querySnapshot = await getDocs(
           query(userDocRef, where("uid", "==", uid))
         );
 
         if (!querySnapshot.empty) {
-          // Récupérer le nom d'utilisateur du premier document correspondant
+          // Retrieve the username of the first matching document
           const docSnap = querySnapshot.docs[0].data().username;
           commit("SET_USERNAME", docSnap);
+          if (state.user) {
+            // Add this line to update the state with the retrieved username
+            state.user.username = docSnap;
+          }
         } else {
           console.log("Aucun document ne correspond à la requête!");
         }
@@ -85,7 +97,7 @@ export default createStore({
         console.log(err);
       }
 
-      // Mettre à jour l'état de l'utilisateur dans le store
+      // Update user status in store
       commit("SET_USER", state.user);
       router.push("/tabs/tab4");
     },
@@ -102,13 +114,13 @@ export default createStore({
         );
         uid = userCredential.user.uid;
 
-        // Enregistrer le nom d'utilisateur dans Firestore
+        // Register username in Firestore
         const docRef = await addDoc(collection(db, "users"), {
           username: username,
         });
         console.log("Document written with ID: ", docRef.id);
 
-        // Mettre à jour le document Firestore avec l'ID de l'utilisateur Firebase Auth
+        // Update Firestore Document with Firebase Auth User ID
         await updateDoc(doc(db, "users", docRef.id), { uid: uid });
       } catch (error) {
         console.error("Error adding document: ", error);
@@ -133,11 +145,18 @@ export default createStore({
         return;
       }
 
-      // Mettre à jour l'état de l'utilisateur dans le store
+      // Update user status in store
       commit("SET_USER", state.user);
       commit("SET_USERNAME", username);
 
       router.push("/tabs/tab4");
+    },
+
+    init({ commit }) {
+      const username = localStorage.getItem("username");
+      if (username) {
+        commit("SET_USERNAME", username);
+      }
     },
 
     async resetPassword({ commit }, email) {

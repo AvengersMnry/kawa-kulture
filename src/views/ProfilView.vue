@@ -7,11 +7,13 @@
     </ion-header>
     <ion-content class="ion-padding">
       <ion-row class="ion-justify-content-center">
-      <ion-avatar class="">
-        <img alt="Silhouette of a person's head" src="../assets/jebena.png" />
-      </ion-avatar>
+        <ion-avatar class="">
+          <img alt="Profil picture" src="../assets/jebena.png" />
+        </ion-avatar>
       </ion-row>
-      <p>{{ username }}</p>
+      <ion-row class="ion-justify-content-center">
+        <h2>{{ username }}</h2>
+      </ion-row>
       <br />
       <ion-list :inset="true">
         <ion-item>
@@ -27,21 +29,27 @@
           <ion-label>Mentions légales</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>contact@kawa-kulture.com</ion-label>
+          <ion-label>Nous contacter</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
-    <ion-button class="ion-margin" @click="logout()">Me déconnecter</ion-button>
+    <ion-button id="logout-button" class="ion-margin" @click="logout()"
+      >Me déconnecter</ion-button
+    >
+    <ion-alert v-if="isAlertShown" :buttons="alertButtons"></ion-alert>
   </ion-page>
 </template>
 
 <script>
 import { defineComponent, reactive } from "vue";
 import { useStore, mapGetters } from "vuex";
-import { toastController } from "@ionic/vue";
+import { toastController, alertController } from "@ionic/vue";
 
 export default defineComponent({
   name: "ProfilView",
+  mounted() {
+    this.$store.dispatch("init");
+  },
   components: {},
   computed: {
     ...mapGetters(["getUsername"]),
@@ -54,8 +62,8 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-    const state = reactive({
-      defaultImageUrl: "../assets/jebena.png",
+    const showAlert = reactive({
+      isAlertShown: false,
     });
 
     const presentToast = async (position) => {
@@ -68,22 +76,33 @@ export default defineComponent({
       await toast.present();
     };
 
-    const logout = () => {
-      presentToast("top");
-      store.dispatch("logout");
-    };
-
-    const onFileSelected = (event) => {
-      state.selectedFile = event.target.files[0];
+    const logout = async () => {
+      const alert = await alertController.create({
+        header: "Déconnexion",
+        message: "Êtes-vous sûr ?",
+        buttons: [
+          {
+            text: "Annuler",
+            role: "cancel",
+          },
+          {
+            text: "OK",
+            role: "confirm",
+            handler: async () => {
+              presentToast("top");
+              await store.dispatch("logout");
+              localStorage.removeItem("username");
+            },
+          },
+        ],
+      });
+      await alert.present();
     };
 
     return {
       logout,
       presentToast,
-      state,
-      onFileSelected,
-      userProfileImageUrl: state.userProfileImageUrl,
-      defaultImageUrl: state.defaultImageUrl,
+      isAlertShown: showAlert.isAlertShown,
     };
   },
 });
