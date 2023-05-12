@@ -23,6 +23,7 @@ import { createApp } from "vue";
 /*** IMPORT THE COMPONENTS IONIC ***/
 import {
   IonApp,
+  IonAlert,
   IonAvatar,
   IonButton,
   IonButtons,
@@ -82,6 +83,7 @@ auth.onAuthStateChanged(() => {
 
     /*** GLOBAL REGISTRATION OF ALL IONIC COMPONENTS ***/
     appInstance.component("ion-app", IonApp);
+    appInstance.component("ion-alert", IonAlert);
     appInstance.component("ion-avatar", IonAvatar);
     appInstance.component("ion-grid", IonGrid);
     appInstance.component("ion-row", IonRow);
