@@ -6,7 +6,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <p>Les cafés à Bordeaux</p>
+      <h1>Les cafés à Bordeaux</h1>
     </ion-content>
   </ion-page>
 </template>

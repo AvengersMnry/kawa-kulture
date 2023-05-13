@@ -11,86 +11,100 @@
         <ion-buttons class="ion-justify-content-center">
           <ion-button
             :fill="currentCategory === 'All' ? 'outline' : 'clear'"
-            @click="updateCategory('All')"
+            @click="setCurrentCategory('All')"
             :color="currentCategory === 'All' ? 'primary' : 'medium'"
             >Toutes</ion-button
           >
           <ion-button
             :fill="currentCategory === 'Dessert' ? 'outline' : 'clear'"
-            @click="updateCategory('Dessert')"
+            @click="setCurrentCategory('Dessert')"
             :color="currentCategory === 'Dessert' ? 'primary' : 'medium'"
             >Dessert</ion-button
           >
           <ion-button
             :fill="currentCategory === 'Drink' ? 'outline' : 'clear'"
-            @click="updateCategory('Drink')"
+            @click="setCurrentCategory('Drink')"
             :color="currentCategory === 'Drink' ? 'primary' : 'medium'"
             >Boisson</ion-button
           >
           <ion-button
             :fill="currentCategory === 'Meal' ? 'outline' : 'clear'"
-            @click="updateCategory('Meal')"
+            @click="setCurrentCategory('Meal')"
             :color="currentCategory === 'Meal' ? 'primary' : 'medium'"
             >Plat</ion-button
           >
         </ion-buttons>
       </ion-toolbar>
       <ion-card
+        class="recipe-card"
         :button="true"
-        v-for="receipe in getFilteredReceipes()"
-        :key="receipe.id"
+        v-for="recipe in getFilteredRecipes(recipes)"
+        :key="recipe.id"
       >
-        <img alt="Receipe's image" :src="receipe.image" />
+        <img class="recipe-img" alt="Recipe's image" :src="recipe.image" />
         <ion-card-header>
-          <ion-card-title>{{ receipe.title }}</ion-card-title>
+          <ion-card-title>{{ recipe.title }}</ion-card-title>
         </ion-card-header>
-        <ion-card-content>{{ receipe.description }}</ion-card-content>
+        <ion-card-content>{{ recipe.description }}</ion-card-content>
       </ion-card>
     </ion-content>
   </ion-page>
 </template>
 <script>
 import { ref } from "vue";
-import receipesData from "../receipes.json";
+import recipesData from "../recipes.json";
 
 export default {
-  name: "ReceipesView",
+  name: "RecipesView",
   components: {},
   setup() {
-    const receipes = ref(receipesData);
+    const recipes = ref(recipesData);
 
     const currentCategory = ref("All");
 
-    const updateCategory = (category) => {
+    const setCurrentCategory = (category) => {
       currentCategory.value = category;
     };
 
-    const getFilteredReceipes = () => {
+    const getFilteredRecipes = (recipes) => {
       if (currentCategory.value === "All") {
-        return receipes.value;
+        return recipes;
       } else {
-        return receipes.value.filter((receipe) =>
-          receipe.categories.includes(currentCategory.value)
+        return recipes.filter((recipe) =>
+          recipe.categories.includes(currentCategory.value)
         );
       }
     };
 
     const getCategories = () => {
       const categories = new Set();
-      receipes.value.forEach((receipe) => {
-        receipe.categories.forEach((category) => {
+      recipes.value.forEach((recipe) => {
+        recipe.categories.forEach((category) => {
           categories.add(category);
         });
       });
       return Array.from(categories);
     };
     return {
-      receipes,
+      recipes,
       currentCategory,
-      updateCategory,
-      getFilteredReceipes,
+      setCurrentCategory,
+      getFilteredRecipes,
       getCategories,
     };
   },
 };
 </script>
+
+<style>
+.recipe-card {
+  max-width: 350px;
+  height: 300px; /* Hauteur fixe pour toutes les images */
+}
+
+.recipe-img {
+  max-width: 50%;
+  height: 100%;
+  /* object-fit: cover; Permet de redimensionner l'image pour qu'elle remplisse la hauteur et la largeur de son conteneur */
+}
+</style>

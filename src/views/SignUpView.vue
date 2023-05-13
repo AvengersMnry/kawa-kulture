@@ -24,7 +24,7 @@
           ></ion-input>
         </ion-item>
         <br />
-        
+
         <ion-item class="ion-margin">
           <ion-label position="stacked">Email</ion-label>
           <ion-input

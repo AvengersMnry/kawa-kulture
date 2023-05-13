@@ -11,7 +11,7 @@
     "title": "Latte",
     "description": "Pour un latte, utilisez deux doses d'espresso et deux tiers de lait chaud avec juste un peu de mousse sur le dessus. Il est le grand frère du cappucino !",
     "ingredients": ["Espresso", "Steamed Milk"],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Latte_at_Doppio_Ristretto_Chiang_Mai_01.jpg/509px-Latte_at_Doppio_Ristretto_Chiang_Mai_01.jpg",
+    "image": "https://resize.elle.fr/original/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/latte-macchiato-2079886/22105792-3-fre-FR/Latte-Macchiato.jpg",
     "categories": ["Drink"],
     "id": 2
   },
@@ -27,7 +27,7 @@
     "title": "L'Americano, ou café allongé",
     "description": "L'americano ou le café allongé est une variante du traditionnel espresso. Dilué avec de l'eau, il lui apporte plus de douceur.",
     "ingredients": ["Espresso", "Hot Water"],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg/1280px-Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg",
+    "image": "https://indianway.fr/wp-content/uploads/2023/03/3454501553.jpg",
     "categories": ["Drink"],
     "id": 4
   },

@@ -49,7 +49,7 @@ const router = createRouter({
         },
         {
           path: "tab1",
-          component: () => import("@/views/ReceipesView.vue"),
+          component: () => import("@/views/RecipesView.vue"),
         },
         {
           path: "tab2",
