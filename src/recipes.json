@@ -1,0 +1,186 @@
+[
+  {
+    "title": "Café filtre",
+    "description": "Préparé en faisant lentement passer de l'eau frémissante dans un filtre rempli de café moulu. Il est en opposition avec la préparation de l'espresso.",
+    "ingredients": ["Coffee"],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/640px-A_small_cup_of_coffee.JPG",
+    "categories": ["Drink"],
+    "id": 1
+  },
+  {
+    "title": "Latte",
+    "description": "Pour un latte, utilisez deux doses d'espresso et deux tiers de lait chaud avec juste un peu de mousse sur le dessus. Il est le grand frère du cappucino !",
+    "ingredients": ["Espresso", "Steamed Milk"],
+    "image": "https://resize.elle.fr/original/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/latte-macchiato-2079886/22105792-3-fre-FR/Latte-Macchiato.jpg",
+    "categories": ["Drink"],
+    "id": 2
+  },
+  {
+    "title": "Cappuccino",
+    "description": "Le cappuccino est un latte avec plus de mousse, souvent garni de cacao ou de cannelle.",
+    "ingredients": ["Espresso", "Steamed Milk", "Foam"],
+    "image": "https://assets.afcdn.com/recipe/20160919/20976_w1024h1024c1cx2624cy1749.jpg",
+    "categories": ["Drink"],
+    "id": 3
+  },
+  {
+    "title": "L'Americano ou café allongé",
+    "description": "L'americano ou le café allongé est une variante du traditionnel espresso. Dilué avec de l'eau, il lui apporte plus de douceur.",
+    "ingredients": ["Espresso", "Hot Water"],
+    "image": "https://indianway.fr/wp-content/uploads/2023/03/3454501553.jpg",
+    "categories": ["Drink"],
+    "id": 4
+  },
+  {
+    "title": "Espresso",
+    "description": "L'espresso... Icône mondiale, c'est le café court par excellence. Traduire « café pressé », en référence à l'eau qui est poussée à très haute pression à travers le café finement moulu.",
+    "ingredients": ["1oz Espresso"],
+    "image": "https://www.loutsa.fr/wp-content/uploads/2020/12/Loutsa-torrefacteur-espresso-e1617360396210.jpg",
+    "categories": ["Drink"],
+    "id": 5
+  },
+  {
+    "title": "Double",
+    "description": "Le double espresso, aussi communément appelé café double, s'obtient en préparant deux espresso dans une tasse.",
+    "ingredients": ["2oz Espresso"],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Doppio.jpg/2560px-Doppio.jpg",
+    "categories": ["Drink"],
+    "id": 6
+  },
+  {
+    "title": "Café Mocha ou Mochaccino",
+    "description": "Sorte de chocolat viennois corsé, il est habituellement servi dans un verre transparent, afin de voir les différentes couches de café, de chocolat et de lait.",
+    "ingredients": ["Espresso", "Steamed Milk", "Chocolate"],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Mocaccino-Coffee.jpg",
+    "categories": ["Drink"],
+    "id": 7
+  },
+  {
+    "title": "Ristretto",
+    "description": "Un ristretto se prépare avec la même quantité de café qu'un espresso, mais avec moitié moins d'eau. Serré, et plein de goût, il est tout droit issu de la tradition italienne.",
+    "ingredients": ["Short pulled espresso"],
+    "image": "https://www.maxicoffee.com/fstrz/r/s/www.maxicoffee.com/blog/wp-content/uploads/2023/04/realiser-recette-ristretto.jpg?frz-v=103",
+    "categories": ["Drink"],
+    "id": 8
+  },
+  {
+    "title": "Flat White",
+    "description": "Ses origines se situent en Australie. À ne pas confondre avec le latte ou le cappuccino ! Cette boisson lactée séduit par sa texture veloutée et est forte de café.",
+    "ingredients": ["Espresso", "Steamed Milk"],
+    "image": "https://www.espressolab.com/Upload/Menu/Buyuk/2102020-Flat-White-161645.jpg",
+    "categories": ["Drink"],
+    "id": 9
+  },
+  {
+    "title": "Affogato",
+    "description": "Le mot « affogato », signifie noyé, ce qui arrive à la crème glacée lorsqu'elle est arrosée de café chaud. Cette boisson-dessert italienne se compose d'une glace à la vanille !",
+    "ingredients": ["Espresso", "Ice cream"],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/17/Vinoteca%2C_Smithfield%2C_London_%284485849609%29.jpg",
+    "categories": ["Drink"],
+    "id": 10
+  },
+  {
+    "title": "L'Irish coffee",
+    "description": "Cocktail traditionnel irlandais à base de café chaud, de sucre roux, de whisky et de crème. Il est apparu pendant la Seconde Guerre mondiale afin de réchauffer les militaires frigorifiés.",
+    "ingredients": ["Coffee", "Whiskey", "Sugar", "Cream"],
+    "image": "https://www.destinationcocktails.fr/wp-content/uploads/2018/04/cocktail-irish-coffee-1.jpg",
+    "categories": ["Drink"],
+    "id": 11
+  },
+  {
+    "title": "Tiramisu au café",
+    "description": "Le tiramisu (de l'italien tirami sù, littéralement « tire-moi vers le haut », « remonte-moi le moral ») est un dessert traditionnel de la cuisine italienne.",
+    "ingredients": [],
+    "image": "https://cafes.trottet.ch/wp-content/uploads/2015/08/10151985_223038834557105_1865562391_n.png",
+    "categories": ["Dessert"],
+    "id": 12
+  },
+  {
+    "title": "Foie gras au café et à la crème de Whisky",
+    "description": "Le foie gras maison, c'est idéal pour régaler ses invités. Avec cette recette parfumée au whisky et au café, surprise garantie !",
+    "ingredients": [],
+    "image": "https://img.cuisineaz.com/660x660/2015/12/02/i79171-foie-gras-au-cafe-et-a-la-creme-de-whisky.webp",
+    "categories": ["Meal"],
+    "id": 13
+  },
+  {
+    "title": "Pavés de biche au parfum de café",
+    "description": "Les arômes de café ajoutent une note subtile à cet élégant plat de viande. Parfait accompagné de légumes verts frais et de pommes de terre rôties.",
+    "ingredients": [],
+    "image": "https://img.cuisineaz.com/660x660/2016/11/02/i91086-paves-de-biche-au-parfum-de-cafe.webp",
+    "categories": ["Meal"],
+    "id": 14
+  },
+  {
+    "title": "Éclair au café",
+    "description": "Composée de pâte à choux, de crème pâtissière et de fondant, ce gâteau a toujours eu un franc succès !",
+    "ingredients": [],
+    "image": "https://www.boulangerielouise.com/wp-content/uploads/2017/09/BOULANGERIE-LOUISE_ECLAIR-CAFE-AMBIANCE-scaled.jpg",
+    "categories": ["Dessert"],
+    "id": 15
+  },
+  {
+    "title": "Cabillaud avec crunch au café",
+    "description": "À base de grains de café, d’amandes et de cacahuètes, le crunch ajoute un plus gustatif à ce poisson. Parfait avec du céleri-branche et un peu de riz.",
+    "ingredients": [],
+    "image": "https://recipeimages.migros.ch/crop/v-w-4000-h-3000-a-center_center/4bdc20309d950b1690bf14f34485a93db1d97665/cabillaud-avec-crunch-au-cafe-0-4-3.jpg",
+    "categories": ["Meal"],
+    "id": 16
+  },
+  {
+    "title": "Verrines de sabayon salé au café",
+    "description": "Originale et savoureuse, mariant la douceur de la crème sabayon à l'amertume du café.",
+    "ingredients": [],
+    "image": "https://www.guydemarle.com/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBeURKQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--b8e4be11d348791f56db7dc4f020c99a78c73fca/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9VWTI5dFltbHVaVjl2Y0hScGIyNXpld2c2QzNKbGMybDZaVWtpRFRZd01IZzJNREJlQmpvR1JWUTZER2R5WVhacGRIbEpJZ3REWlc1MFpYSUdPd2RVT2dsamNtOXdTU0lRTmpBd2VEWXdNQ3N3S3pBR093ZFUiLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--929a1958a8630156464b089800ca739f1b4570de/verrines-sabayon-cafe.jpg",
+    "categories": ["Meal"],
+    "id": 17
+  },
+  {
+    "title": "Ris de veau sauce au café",
+    "description": "Produit phare de la gastronomie française, le ris de veau est un mets délicat. Accompagné ici d'une sauce au café, de sarrasin et de noisettes.",
+    "ingredients": [],
+    "image": "https://cache.marieclaire.fr/data/photo/w1000_ci/5t/ris-de-veau-sauce-au-cafe.webp",
+    "categories": ["Meal"],
+    "id": 18
+  },
+  {
+    "title": "Délice aux noix et au café",
+    "description": "Très facile à préparer, cet entremet original sera parfait pour un instant frais et gourmand en fin de repas ou au goûter !",
+    "ingredients": [],
+    "image": "https://cache.marieclaire.fr/data/photo/w768_ci/1bk/delice-aux-noix-et-au-cafe.webp",
+    "categories": ["Dessert"],
+    "id": 19
+  },
+  {
+    "title": "Agneau au café",
+    "description": "Surprenante et généreuse, cette recette d'agneau est l'occasion de mettre les petits plats dans les grands. Résultat : un plat raffiné et épatant.",
+    "ingredients": [],
+    "image": "https://cache.marieclaire.fr/data/photo/w768_ci/5t/recette-agneau-au-cafe.webp",
+    "categories": ["Meal"],
+    "id": 20
+  },
+  {
+    "title": "Bûche de Noël au café et au praliné",
+    "description": "Réalisée avec un biscuit roulé, de la crème au beurre au café et de la crème au beurre praliné, cette bûche sera parfaite pour vos repas de fêtes !",
+    "ingredients": [],
+    "image": "https://cache.marieclaire.fr/data/photo/w1000_ci/1h2/buche-cafe-praline.webp",
+    "categories": ["Dessert"],
+    "id": 21
+  },
+  {
+    "title": "Magrets de canard, chou rouge aux pruneaux et sauce au café",
+    "description": "Pour un repas haut en couleurs et en saveurs, réalisez cette recette prête en 30 minutes. Une préparation rapide pour un résultat chic et raffiné !",
+    "ingredients": [],
+    "image": "https://cache.marieclaire.fr/data/photo/w1771_ci/5t/canard-saute-au-chou-et-sauce-cafe1.webp",
+    "categories": ["Meal"],
+    "id": 22
+  },
+  {
+    "title": "Bucatini et carbonara au café",
+    "description": "Pour cette interpétation, pas de classicisme mais de l'originalité grâce à de subtils arômes de café.",
+    "ingredients": [],
+    "image": "https://i-reg.unimedias.fr/sites/art-de-vivre/files/styles/recipe/public/Import/Bucatini.jpg?auto=compress%2Cformat&crop=faces%2Cedges&cs=srgb&fit=crop",
+    "categories": ["Meal"],
+    "id": 23
+  }
+]
