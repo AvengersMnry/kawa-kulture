@@ -3,6 +3,7 @@ node_modules
 /dist
 src/firebase
 /src/firebase
+firebase.json
 
 # local env files
 .env.local
