@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title type="ios">Mes recettes</ion-title>
+        <ion-title type="ios">Idées recettes</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -10,10 +10,10 @@
       <ion-toolbar>
         <ion-buttons class="ion-justify-content-center">
           <ion-button
-            :fill="currentCategory === 'All' ? 'outline' : 'clear'"
-            @click="setCurrentCategory('All')"
-            :color="currentCategory === 'All' ? 'primary' : 'medium'"
-            >Toutes</ion-button
+            :fill="currentCategory === 'Meal' ? 'outline' : 'clear'"
+            @click="setCurrentCategory('Meal')"
+            :color="currentCategory === 'Meal' ? 'primary' : 'medium'"
+            >Plat</ion-button
           >
           <ion-button
             :fill="currentCategory === 'Dessert' ? 'outline' : 'clear'"
@@ -28,17 +28,16 @@
             >Boisson</ion-button
           >
           <ion-button
-            :fill="currentCategory === 'Meal' ? 'outline' : 'clear'"
-            @click="setCurrentCategory('Meal')"
-            :color="currentCategory === 'Meal' ? 'primary' : 'medium'"
-            >Plat</ion-button
+            :fill="currentCategory === 'All' ? 'outline' : 'clear'"
+            @click="setCurrentCategory('All')"
+            :color="currentCategory === 'All' ? 'primary' : 'medium'"
+            >Toutes</ion-button
           >
         </ion-buttons>
       </ion-toolbar>
       <ion-card
-        class="recipe-card"
         :button="true"
-        v-for="recipe in getFilteredRecipes(recipes)"
+        v-for="recipe in getFilteredRecipes"
         :key="recipe.id"
       >
         <img class="recipe-img" alt="Recipe's image" :src="recipe.image" />
@@ -51,34 +50,37 @@
   </ion-page>
 </template>
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import recipesData from "../recipes.json";
 
 export default {
   name: "RecipesView",
   components: {},
   setup() {
-    const recipes = ref(recipesData);
+    const allRecipes = ref(recipesData);
 
-    const currentCategory = ref("All");
+    const currentCategory = ref("Meal");
+
+    const getFilteredRecipes = computed(() => {
+      let filteredRecipes = allRecipes.value;
+
+      if (currentCategory.value !== "All") {
+        filteredRecipes = filteredRecipes.filter((recipe) =>
+          recipe.categories.includes(currentCategory.value)
+        );
+      }
+
+      filteredRecipes.sort(() => Math.random() - 0.5);
+      return filteredRecipes;
+    });
 
     const setCurrentCategory = (category) => {
       currentCategory.value = category;
     };
 
-    const getFilteredRecipes = (recipes) => {
-      if (currentCategory.value === "All") {
-        return recipes;
-      } else {
-        return recipes.filter((recipe) =>
-          recipe.categories.includes(currentCategory.value)
-        );
-      }
-    };
-
     const getCategories = () => {
       const categories = new Set();
-      recipes.value.forEach((recipe) => {
+      allRecipes.value.forEach((recipe) => {
         recipe.categories.forEach((category) => {
           categories.add(category);
         });
@@ -86,7 +88,7 @@ export default {
       return Array.from(categories);
     };
     return {
-      recipes,
+      allRecipes,
       currentCategory,
       setCurrentCategory,
       getFilteredRecipes,
@@ -97,14 +99,9 @@ export default {
 </script>
 
 <style>
-.recipe-card {
-  max-width: 350px;
-  height: 300px; /* Hauteur fixe pour toutes les images */
-}
-
 .recipe-img {
-  max-width: 50%;
-  height: 100%;
-  /* object-fit: cover; Permet de redimensionner l'image pour qu'elle remplisse la hauteur et la largeur de son conteneur */
+  min-width: 100%;
+  max-height: 300px;
+  object-fit: cover;
 }
 </style>

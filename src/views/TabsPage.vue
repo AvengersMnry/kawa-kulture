@@ -6,7 +6,7 @@
         <ion-tab-bar>
           <ion-tab-button tab="tab1" href="/tabs/tab1">
             <ion-icon aria-hidden="true" :icon="cafeOutline" />
-            <ion-label>Recettes</ion-label>
+            <ion-label>Découverte</ion-label>
           </ion-tab-button>
 
           <ion-tab-button tab="tab2" href="/tabs/tab2">
