@@ -130,7 +130,7 @@ auth.onAuthStateChanged(() => {
     appInstance.component("ion-card", IonCard);
     appInstance.component("ion-card-title", IonCardTitle);
     appInstance.component("ion-card-header", IonCardHeader);
-        appInstance.component("ion-card-content", IonCardContent);
+    appInstance.component("ion-card-content", IonCardContent);
 
     appInstance.component("ion-tabs", IonTabs);
     appInstance.component("ion-tab-bar", IonTabBar);
