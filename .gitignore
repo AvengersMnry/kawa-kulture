@@ -4,6 +4,7 @@ node_modules
 src/firebase
 /src/firebase
 firebase.json
+site.webmanifest
 
 # local env files
 .env.local

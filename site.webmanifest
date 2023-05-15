@@ -3,7 +3,7 @@
   "short_name": "Kawa-Kulture",
   "theme_color": "#436a31",
   "background_color": "#ffffff",
-  "display": "standalone",
+  "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
   "icons": [
