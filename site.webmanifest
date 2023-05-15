@@ -1,52 +1,32 @@
 {
-  "name": "Kawa-Kulture",
-  "short_name": "Kawa-Kulture",
-  "theme_color": "#436a31",
-  "background_color": "#ffffff",
-  "display": "fullscreen",
-  "scope": "/",
-  "start_url": "/",
+  "name": "Kawa-kulture",
+  "short_name": "Kawa-kulture",
+  "theme_color": "#4DBA87",
   "icons": [
     {
-      "src": "../public/img/icons/AppIcons/72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "../public/img/icons/AppIcons/96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "../public/img/icons/AppIcons/128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "../public/img/icons/AppIcons/144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "../public/img/icons/AppIcons/152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
-      "src": "../public/img/icons/AppIcons/192.png",
+      "src": "./img/icons/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "../public/img/icons/AppIcons/256.png",
-      "sizes": "384x384",
+      "src": "./img/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "../public/img/icons/AppIcons/512.png",
+      "src": "./img/icons/android-chrome-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./img/icons/android-chrome-maskable-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "lang": "French"
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#000000"
 }
