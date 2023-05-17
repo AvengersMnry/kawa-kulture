@@ -7,10 +7,8 @@ const auth = getAuth();
 const requireAuth = (to, from, next) => {
   let user = auth.currentUser;
   if (!user) {
-    console.log("Non connecté(e)");
     next({ name: "LandingView" });
   } else {
-    console.log("Connecté(e)" + user.uid);
     next();
   }
 };
