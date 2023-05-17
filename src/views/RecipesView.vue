@@ -22,7 +22,7 @@
             >Dessert</ion-button
           >
           <ion-button
-            :fill="currentCategory === 'Drink' ? 'solid' : 'clear'"
+            :fill="currentCategory === 'Drink' ? 'outline' : 'clear'"
             @click="setCurrentCategory('Drink')"
             :color="currentCategory === 'Drink' ? 'favorite' : 'medium'"
             >Boisson</ion-button
@@ -41,13 +41,15 @@
         :key="recipe.id"
       >
         <img class="recipe-img" alt="Recipe's image" :src="recipe.image" />
-        <ion-card-header>
+        <ion-card-header class="ion-padding ion-text-center">
           <ion-card-title>{{ recipe.title }}</ion-card-title>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content class="ion-padding ion-text-center">
           <ion-text>{{ recipe.description }}</ion-text>
+          <br />
           <ion-button fill="outline" color="favorite">
             <ion-icon :icon="heartOutline"></ion-icon>
+            <ion-text>+</ion-text>
           </ion-button>
         </ion-card-content>
       </ion-card>
