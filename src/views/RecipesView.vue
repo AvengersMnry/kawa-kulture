@@ -12,25 +12,25 @@
           <ion-button
             :fill="currentCategory === 'Meal' ? 'outline' : 'clear'"
             @click="setCurrentCategory('Meal')"
-            :color="currentCategory === 'Meal' ? 'primary' : 'medium'"
+            :color="currentCategory === 'Meal' ? 'favorite' : 'medium'"
             >Plat</ion-button
           >
           <ion-button
             :fill="currentCategory === 'Dessert' ? 'outline' : 'clear'"
             @click="setCurrentCategory('Dessert')"
-            :color="currentCategory === 'Dessert' ? 'primary' : 'medium'"
+            :color="currentCategory === 'Dessert' ? 'favorite' : 'medium'"
             >Dessert</ion-button
           >
           <ion-button
-            :fill="currentCategory === 'Drink' ? 'outline' : 'clear'"
+            :fill="currentCategory === 'Drink' ? 'solid' : 'clear'"
             @click="setCurrentCategory('Drink')"
-            :color="currentCategory === 'Drink' ? 'primary' : 'medium'"
+            :color="currentCategory === 'Drink' ? 'favorite' : 'medium'"
             >Boisson</ion-button
           >
           <ion-button
             :fill="currentCategory === 'All' ? 'outline' : 'clear'"
             @click="setCurrentCategory('All')"
-            :color="currentCategory === 'All' ? 'primary' : 'medium'"
+            :color="currentCategory === 'All' ? 'favorite' : 'medium'"
             >Toutes</ion-button
           >
         </ion-buttons>
@@ -44,7 +44,12 @@
         <ion-card-header>
           <ion-card-title>{{ recipe.title }}</ion-card-title>
         </ion-card-header>
-        <ion-card-content>{{ recipe.description }}</ion-card-content>
+        <ion-card-content>
+          <ion-text>{{ recipe.description }}</ion-text>
+          <ion-button fill="outline" color="favorite">
+            <ion-icon :icon="heartOutline"></ion-icon>
+          </ion-button>
+        </ion-card-content>
       </ion-card>
     </ion-content>
   </ion-page>
@@ -52,6 +57,7 @@
 <script>
 import { ref, computed } from "vue";
 import recipesData from "../recipes.json";
+import { heartOutline } from "ionicons/icons";
 
 export default {
   name: "RecipesView",
@@ -93,12 +99,13 @@ export default {
       setCurrentCategory,
       getFilteredRecipes,
       getCategories,
+      heartOutline,
     };
   },
 };
 </script>
 
-<style>
+<style scoped>
 .recipe-img {
   min-width: 100%;
   max-height: 300px;
