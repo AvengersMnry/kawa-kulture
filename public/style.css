@@ -29,20 +29,3 @@ body {
     top: 10px;
     left: 10px;
 }
-:root {
-    --ion-color-base: #ff9017;
-    --ion-color-base-rgb: 255, 144, 23;
-    --ion-color-base-contrast: #000000;
-    --ion-color-base-contrast-rgb: 0, 0, 0;
-    --ion-color-base-shade: #e07f14;
-    --ion-color-base-tint: #ff9b2e;
-}
-
-.ion-color-base {
-    --ion-color-base: var(--ion-color-base);
-    --ion-color-base-rgb: var(--ion-color-base-rgb);
-    --ion-color-contrast: var(--ion-color-base-contrast);
-    --ion-color-contrast-rgb: var(--ion-color-base-contrast-rgb);
-    --ion-color-shade: var(--ion-color-base-shade);
-    --ion-color-tint: var(--ion-color-base-tint);
-}

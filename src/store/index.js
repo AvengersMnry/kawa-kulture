@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import router from "../router";
 import { auth, db } from "../firebase";
+import "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -11,46 +12,77 @@ import {
   collection,
   addDoc,
   updateDoc,
+  arrayUnion,
   doc,
+  setDoc,
   where,
   query,
   getDocs,
 } from "firebase/firestore";
+
+// Constantes pour les mutations
+const SET_USER = "SET_USER";
+const SET_USERNAME = "SET_USERNAME";
+const CLEAR_USER = "CLEAR_USER";
+const ADD_FAVORITE_RECIPE = "ADD_FAVORITE_RECIPE";
+const RESET_PASSWORD_SUCCESS = "resetPasswordSuccess";
+
+// Constantes pour les codes d'erreur
+const ERROR_USER_NOT_FOUND = "auth/user-not-found";
+const ERROR_WRONG_PASSWORD = "auth/wrong-password";
+const ERROR_EMAIL_ALREADY_IN_USE = "auth/email-already-in-use";
+const ERROR_INVALID_EMAIL = "auth/invalid-email";
+const ERROR_OPERATION_NOT_ALLOWED = "auth/operation-not-allowed";
+const ERROR_WEAK_PASSWORD = "auth/weak-password";
 
 export default createStore({
   state: {
     user: {
       username: "",
       docId: null,
+      uid: null,
+      favoriteRecipes: [],
     },
   },
 
   mutations: {
-    SET_USER(state, user) {
+    [SET_USER](state, user) {
       state.user = user;
     },
 
-    SET_USERNAME(state, username) {
+    [SET_USERNAME](state, username) {
       if (state.user) {
         state.user.username = username;
       } else {
         state.user = {
           username: username,
+          uid: null,
           docId: null,
+          favoriteRecipes: [],
         };
       }
       localStorage.setItem("username", username);
     },
 
-    CLEAR_USER(state) {
-      state.user = null;
+    [CLEAR_USER](state) {
+      state.user = {
+        username: "",
+        docId: null,
+        uid: null,
+        favoriteRecipes: [],
+      };
     },
 
-    resetPasswordSuccess(state) {
+    [ADD_FAVORITE_RECIPE](state, recipeId) {
+      state.user.favoriteRecipes.push(recipeId);
+    },
+
+    [RESET_PASSWORD_SUCCESS](state) {
       state.passwordResetSuccess = true;
       state.resetPasswordError = null;
     },
   },
+
   actions: {
     async login({ commit, state }, details) {
       const { email, password } = details;
@@ -59,10 +91,10 @@ export default createStore({
         await signInWithEmailAndPassword(auth, email, password);
       } catch (error) {
         switch (error.code) {
-          case "auth/user-not-found":
+          case ERROR_USER_NOT_FOUND:
             alert("User not found");
             break;
-          case "auth/wrong-password":
+          case ERROR_WRONG_PASSWORD:
             alert("Wrong password");
             break;
           default:
@@ -70,35 +102,35 @@ export default createStore({
         }
         return;
       }
+
       try {
         // Retrieve User ID
         const uid = auth.currentUser.uid;
+        commit(SET_USER, { ...state.user, uid });
 
-        // Retrieve the user's docId
         const userDocRef = collection(db, "users");
-
         // Create a query to filter documents by uid
         const querySnapshot = await getDocs(
           query(userDocRef, where("uid", "==", uid))
         );
 
         if (!querySnapshot.empty) {
-          // Retrieve the username of the first matching document
-          const docSnap = querySnapshot.docs[0].data().username;
-          commit("SET_USERNAME", docSnap);
-          if (state.user) {
-            // Add this line to update the state with the retrieved username
-            state.user.username = docSnap;
-          }
+          const docSnap = querySnapshot.docs[0];
+          const docId = docSnap.id;
+          const username = docSnap.data().username;
+
+          console.log(docId + " & " + username);
+
+          commit(SET_USERNAME, docSnap);
+          commit(SET_USERNAME, username);
         } else {
-          console.log("Aucun document ne correspond à la requête!");
+          console.log("Aucun document ne correspond à la requête !");
         }
       } catch (err) {
         console.log(err);
       }
 
-      // Update user status in store
-      commit("SET_USER", state.user);
+      commit(SET_USER, state.user);
       router.push("/tabs/tab4");
     },
 
@@ -113,29 +145,27 @@ export default createStore({
           password
         );
         uid = userCredential.user.uid;
+        commit(SET_USER, { ...state.user, uid });
 
-        // Register username in Firestore
         const docRef = await addDoc(collection(db, "users"), {
           username: username,
         });
-        console.log("Document written with ID: ", docRef.id);
 
-        // Update Firestore Document with Firebase Auth User ID
         await updateDoc(doc(db, "users", docRef.id), { uid: uid });
       } catch (error) {
         console.error("Error adding document: ", error);
 
         switch (error.code) {
-          case "auth/email-already-in-use":
+          case ERROR_EMAIL_ALREADY_IN_USE:
             alert("Email already in use");
             break;
-          case "auth/invalid-email":
+          case ERROR_INVALID_EMAIL:
             alert("Invalid email");
             break;
-          case "auth/operation-not-allowed":
+          case ERROR_OPERATION_NOT_ALLOWED:
             alert("Operation not allowed");
             break;
-          case "auth/weak-password":
+          case ERROR_WEAK_PASSWORD:
             alert("Weak password");
             break;
           default:
@@ -144,10 +174,8 @@ export default createStore({
 
         return;
       }
-
-      // Update user status in store
-      commit("SET_USER", state.user);
-      commit("SET_USERNAME", username);
+      commit(SET_USER, state.user);
+      commit(SET_USERNAME, username);
 
       router.push("/tabs/tab4");
     },
@@ -189,7 +217,41 @@ export default createStore({
         }
       });
     },
+
+    async addRecipeToFavorite({ commit, state }, recipeId) {
+      const user = state.user;
+      console.log(recipeId);
+
+      if (user && user.docId) {
+        const userDocRef = doc(db, "users", user.docId);
+        try {
+          const docSnapshot = await userDocRef.get();
+          if (docSnapshot.exists() && docSnapshot.data().favoriteRecipes) {
+            await updateDoc(userDocRef, {
+              favoriteRecipes: arrayUnion(recipeId),
+            });
+          } else {
+            await setDoc(
+              userDocRef,
+              {
+                favoriteRecipes: [recipeId],
+              },
+              { merge: true }
+            );
+          }
+
+          console.log("Recette ajoutée avec succès aux favoris !");
+          commit(ADD_FAVORITE_RECIPE, recipeId);
+        } catch (error) {
+          console.error(
+            "Erreur lors de l'ajout de la recette aux favoris :",
+            error
+          );
+        }
+      }
+    },
   },
+
   getters: {
     getUsername: (state) => {
       return state.user ? state.user.username : null;

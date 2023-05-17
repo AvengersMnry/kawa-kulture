@@ -12,25 +12,25 @@
           <ion-button
             :fill="currentCategory === 'Meal' ? 'outline' : 'clear'"
             @click="setCurrentCategory('Meal')"
-            :color="currentCategory === 'Meal' ? 'favorite' : 'medium'"
+            :color="currentCategory === 'Meal' ? 'base' : 'medium'"
             >Plat</ion-button
           >
           <ion-button
             :fill="currentCategory === 'Dessert' ? 'outline' : 'clear'"
             @click="setCurrentCategory('Dessert')"
-            :color="currentCategory === 'Dessert' ? 'favorite' : 'medium'"
+            :color="currentCategory === 'Dessert' ? 'base' : 'medium'"
             >Dessert</ion-button
           >
           <ion-button
             :fill="currentCategory === 'Drink' ? 'outline' : 'clear'"
             @click="setCurrentCategory('Drink')"
-            :color="currentCategory === 'Drink' ? 'favorite' : 'medium'"
+            :color="currentCategory === 'Drink' ? 'base' : 'medium'"
             >Boisson</ion-button
           >
           <ion-button
             :fill="currentCategory === 'All' ? 'outline' : 'clear'"
             @click="setCurrentCategory('All')"
-            :color="currentCategory === 'All' ? 'favorite' : 'medium'"
+            :color="currentCategory === 'All' ? 'base' : 'medium'"
             >Toutes</ion-button
           >
         </ion-buttons>
@@ -47,9 +47,12 @@
         <ion-card-content class="ion-padding ion-text-center">
           <ion-text>{{ recipe.description }}</ion-text>
           <br />
-          <ion-button fill="outline" color="favorite">
+          <ion-button
+            fill="outline"
+            color="base"
+            @click="addFavorite(recipe.id)"
+          >
             <ion-icon :icon="heartOutline"></ion-icon>
-            <ion-text>+</ion-text>
           </ion-button>
         </ion-card-content>
       </ion-card>
@@ -58,6 +61,7 @@
 </template>
 <script>
 import { ref, computed } from "vue";
+import { useStore } from "vuex";
 import recipesData from "../recipes.json";
 import { heartOutline } from "ionicons/icons";
 
@@ -65,6 +69,7 @@ export default {
   name: "RecipesView",
   components: {},
   setup() {
+    const store = useStore();
     const allRecipes = ref(recipesData);
 
     const currentCategory = ref("Meal");
@@ -86,6 +91,10 @@ export default {
       currentCategory.value = category;
     };
 
+    const addFavorite = (recipe) => {
+      store.dispatch("addRecipeToFavorite", recipe);
+    };
+
     const getCategories = () => {
       const categories = new Set();
       allRecipes.value.forEach((recipe) => {
@@ -99,6 +108,7 @@ export default {
       allRecipes,
       currentCategory,
       setCurrentCategory,
+      addFavorite,
       getFilteredRecipes,
       getCategories,
       heartOutline,
@@ -108,9 +118,20 @@ export default {
 </script>
 
 <style scoped>
+:root {
+  --ion-color-base: #ff9017;
+}
+
+.ion-color-base {
+  --ion-color-base: var(--ion-color-base);
+}
+
 .recipe-img {
   min-width: 100%;
   max-height: 300px;
   object-fit: cover;
+}
+ion-button {
+  color: #ff9017;
 }
 </style>
