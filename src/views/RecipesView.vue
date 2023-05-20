@@ -50,7 +50,7 @@
           <ion-button
             fill="outline"
             color="base"
-            @click="addFavorite(recipe.id)"
+            @click="addFavorite(recipe)"
           >
             <ion-icon :icon="heartOutline"></ion-icon>
           </ion-button>

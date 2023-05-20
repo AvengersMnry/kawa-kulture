@@ -12,9 +12,9 @@ import {
   collection,
   addDoc,
   updateDoc,
-  arrayUnion,
+  // arrayUnion,
   doc,
-  setDoc,
+  // setDoc,
   where,
   query,
   getDocs,
@@ -73,8 +73,8 @@ export default createStore({
       };
     },
 
-    [ADD_FAVORITE_RECIPE](state, recipeId) {
-      state.user.favoriteRecipes.push(recipeId);
+    [ADD_FAVORITE_RECIPE](state, recipe) {
+      state.user.favoriteRecipes.push(recipe.id);
     },
 
     [RESET_PASSWORD_SUCCESS](state) {
@@ -149,6 +149,7 @@ export default createStore({
 
         const docRef = await addDoc(collection(db, "users"), {
           username: username,
+          favoriteRecipes: [], // Ajout du tableau vide
         });
 
         await updateDoc(doc(db, "users", docRef.id), { uid: uid });
@@ -218,35 +219,41 @@ export default createStore({
       });
     },
 
-    async addRecipeToFavorite({ commit, state }, recipeId) {
+    async addRecipeToFavorite({ commit, state }, recipe) {
       const user = state.user;
-      console.log(recipeId);
+      console.log(recipe);
 
-      if (user && user.docId) {
-        const userDocRef = doc(db, "users", user.docId);
-        try {
-          const docSnapshot = await userDocRef.get();
-          if (docSnapshot.exists() && docSnapshot.data().favoriteRecipes) {
-            await updateDoc(userDocRef, {
-              favoriteRecipes: arrayUnion(recipeId),
-            });
-          } else {
-            await setDoc(
-              userDocRef,
-              {
-                favoriteRecipes: [recipeId],
-              },
-              { merge: true }
+      if (user) {
+        console.log('user ok' + recipe.title)
+        const userDocRef = collection(db, "users");
+        const querySnapshot = await getDocs(
+          query(userDocRef, where("uid", "==", auth.currentUser.uid))
+        );
+
+        if (!querySnapshot.empty) {
+          const docSnap = querySnapshot.docs[0];
+          const docId = docSnap.id;
+
+          try {
+            const favoriteRecipes = docSnap.data().favoriteRecipes || [];
+            if (!favoriteRecipes.includes(recipe.id)) {
+              favoriteRecipes.push(recipe.id);
+              await updateDoc(doc(db, "users", docId), {
+                favoriteRecipes: favoriteRecipes,
+              });
+              console.log("Recette ajoutée avec succès aux favoris !");
+              commit(ADD_FAVORITE_RECIPE, recipe.id);
+            } else {
+              console.log("La recette est déjà dans les favoris !");
+            }
+          } catch (error) {
+            console.error(
+              "Erreur lors de l'ajout de la recette aux favoris :",
+              error
             );
           }
-
-          console.log("Recette ajoutée avec succès aux favoris !");
-          commit(ADD_FAVORITE_RECIPE, recipeId);
-        } catch (error) {
-          console.error(
-            "Erreur lors de l'ajout de la recette aux favoris :",
-            error
-          );
+        } else {
+          console.log("Aucun document ne correspond à la requête !");
         }
       }
     },
