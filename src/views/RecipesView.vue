@@ -47,11 +47,7 @@
         <ion-card-content class="ion-padding ion-text-center">
           <ion-text>{{ recipe.description }}</ion-text>
           <br />
-          <ion-button
-            fill="outline"
-            color="base"
-            @click="addFavorite(recipe)"
-          >
+          <ion-button fill="outline" color="base" @click="addFavorite(recipe)">
             <ion-icon :icon="heartOutline"></ion-icon>
           </ion-button>
         </ion-card-content>
@@ -60,10 +56,10 @@
   </ion-page>
 </template>
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 import recipesData from "../recipes.json";
-import { heartOutline } from "ionicons/icons";
+import { heartOutline, heartFull } from "ionicons/icons";
 
 export default {
   name: "RecipesView",
@@ -95,6 +91,23 @@ export default {
       store.dispatch("addRecipeToFavorite", recipe);
     };
 
+    watch(
+      () => store.state.addRecipeStatus,
+      (newStatus) => {
+        if (newStatus === "success") {
+          // Afficher une confirmation à l'utilisateur
+          alert("Recette ajoutée avec succès !");
+          // Réinitialiser le statut
+          store.commit("ADD_RECIPE_SUCCESS");
+        } else if (newStatus === "failure") {
+          // Afficher un message d'erreur à l'utilisateur
+          alert("Erreur lors de l'ajout de la recette aux favoris !");
+          // Réinitialiser le statut
+          store.commit("ADD_RECIPE_FAILURE");
+        }
+      }
+    );
+
     const getCategories = () => {
       const categories = new Set();
       allRecipes.value.forEach((recipe) => {
@@ -104,6 +117,7 @@ export default {
       });
       return Array.from(categories);
     };
+
     return {
       allRecipes,
       currentCategory,
@@ -112,6 +126,7 @@ export default {
       getFilteredRecipes,
       getCategories,
       heartOutline,
+      heartFull,
     };
   },
 };

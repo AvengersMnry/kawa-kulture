@@ -25,7 +25,10 @@ const SET_USER = "SET_USER";
 const SET_USERNAME = "SET_USERNAME";
 const CLEAR_USER = "CLEAR_USER";
 const ADD_FAVORITE_RECIPE = "ADD_FAVORITE_RECIPE";
+const REMOVE_RECIPE_TO_FAVORITE = "REMOVE_RECIPE_TO_FAVORITE";
 const RESET_PASSWORD_SUCCESS = "resetPasswordSuccess";
+const ADD_RECIPE_SUCCESS = "ADD_RECIPE_SUCCESS";
+const ADD_RECIPE_FAILURE = "ADD_RECIPE_FAILURE";
 
 // Constantes pour les codes d'erreur
 const ERROR_USER_NOT_FOUND = "auth/user-not-found";
@@ -43,6 +46,7 @@ export default createStore({
       uid: null,
       favoriteRecipes: [],
     },
+    addRecipeStatus: null,
   },
 
   mutations: {
@@ -75,6 +79,25 @@ export default createStore({
 
     [ADD_FAVORITE_RECIPE](state, recipe) {
       state.user.favoriteRecipes.push(recipe.id);
+    },
+    
+    addRecipeToFavorites(state, recipe) {
+      state.favorites.push(recipe);
+    },
+    
+    [REMOVE_RECIPE_TO_FAVORITE](state, recipe) {
+      const index = state.user.favoriteRecipes.findIndex((r) => r.id === recipe.id);
+      if (index !== -1) {
+        state.favoriteRecipes.splice(index, 1);
+      }
+    },
+
+    [ADD_RECIPE_SUCCESS](state) {
+      state.addRecipeStatus = "success";
+    },
+
+    [ADD_RECIPE_FAILURE](state) {
+      state.addRecipeStatus = "failure";
     },
 
     [RESET_PASSWORD_SUCCESS](state) {
@@ -224,7 +247,7 @@ export default createStore({
       console.log(recipe);
 
       if (user) {
-        console.log('user ok' + recipe.title)
+        console.log("user ok" + recipe.title);
         const userDocRef = collection(db, "users");
         const querySnapshot = await getDocs(
           query(userDocRef, where("uid", "==", auth.currentUser.uid))
@@ -242,7 +265,8 @@ export default createStore({
                 favoriteRecipes: favoriteRecipes,
               });
               console.log("Recette ajoutée avec succès aux favoris !");
-              commit(ADD_FAVORITE_RECIPE, recipe.id);
+              commit(ADD_RECIPE_SUCCESS);
+              commit(ADD_FAVORITE_RECIPE, recipe);
             } else {
               console.log("La recette est déjà dans les favoris !");
             }
@@ -251,6 +275,7 @@ export default createStore({
               "Erreur lors de l'ajout de la recette aux favoris :",
               error
             );
+            commit(ADD_RECIPE_FAILURE);
           }
         } else {
           console.log("Aucun document ne correspond à la requête !");
