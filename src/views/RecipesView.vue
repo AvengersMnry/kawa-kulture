@@ -48,7 +48,9 @@
           <ion-text>{{ recipe.description }}</ion-text>
           <br />
           <ion-button fill="outline" color="base" @click="addFavorite(recipe)">
-            <ion-icon :icon="heartOutline"></ion-icon>
+            <ion-icon
+              :icon="recipe.isFavorite ? heart : heartOutline"
+            ></ion-icon>
           </ion-button>
         </ion-card-content>
       </ion-card>
@@ -59,7 +61,7 @@
 import { ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 import recipesData from "../recipes.json";
-import { heartOutline, heartFull } from "ionicons/icons";
+import { heartOutline, heart } from "ionicons/icons";
 
 export default {
   name: "RecipesView",
@@ -88,7 +90,17 @@ export default {
     };
 
     const addFavorite = (recipe) => {
-      store.dispatch("addRecipeToFavorite", recipe);
+      if (recipe.isFavorite) {
+        // Supprimer la recette des favoris
+        console.log('IsFavorite: true')
+        store.dispatch("removeRecipeFromFavorite", recipe);
+        recipe.isFavorite = false; // Mettre à jour la propriété isFavorite
+      } else {
+        console.log('isFavorite: false')
+        // Ajouter la recette aux favoris
+        store.dispatch("addRecipeToFavorite", recipe);
+        recipe.isFavorite = true; // Mettre à jour la propriété isFavorite
+      }
     };
 
     watch(
@@ -126,7 +138,7 @@ export default {
       getFilteredRecipes,
       getCategories,
       heartOutline,
-      heartFull,
+      heart,
     };
   },
 };

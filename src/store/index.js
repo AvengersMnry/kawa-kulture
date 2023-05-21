@@ -80,13 +80,15 @@ export default createStore({
     [ADD_FAVORITE_RECIPE](state, recipe) {
       state.user.favoriteRecipes.push(recipe.id);
     },
-    
+
     addRecipeToFavorites(state, recipe) {
       state.favorites.push(recipe);
     },
-    
+
     [REMOVE_RECIPE_TO_FAVORITE](state, recipe) {
-      const index = state.user.favoriteRecipes.findIndex((r) => r.id === recipe.id);
+      const index = state.user.favoriteRecipes.findIndex(
+        (r) => r.id === recipe.id
+      );
       if (index !== -1) {
         state.favoriteRecipes.splice(index, 1);
       }
@@ -244,10 +246,8 @@ export default createStore({
 
     async addRecipeToFavorite({ commit, state }, recipe) {
       const user = state.user;
-      console.log(recipe);
 
       if (user) {
-        console.log("user ok" + recipe.title);
         const userDocRef = collection(db, "users");
         const querySnapshot = await getDocs(
           query(userDocRef, where("uid", "==", auth.currentUser.uid))
@@ -264,11 +264,18 @@ export default createStore({
               await updateDoc(doc(db, "users", docId), {
                 favoriteRecipes: favoriteRecipes,
               });
-              console.log("Recette ajoutée avec succès aux favoris !");
               commit(ADD_RECIPE_SUCCESS);
-              commit(ADD_FAVORITE_RECIPE, recipe);
+              commit(ADD_FAVORITE_RECIPE, recipe.id);
             } else {
-              console.log("La recette est déjà dans les favoris !");
+              const index = favoriteRecipes.indexOf(recipe.id);
+              if (index !== -1) {
+                favoriteRecipes.splice(index, 1);
+                await updateDoc(doc(db, "users", docId), {
+                  favoriteRecipes: favoriteRecipes,
+                });
+                commit(ADD_RECIPE_SUCCESS);
+                commit(REMOVE_RECIPE_TO_FAVORITE, recipe.id);
+              }
             }
           } catch (error) {
             console.error(
@@ -282,6 +289,10 @@ export default createStore({
         }
       }
     },
+    
+    async removeRecipeFromFavorite(recipe) {
+      console.log('inside remove function - ' + recipe.id)
+    }
   },
 
   getters: {
