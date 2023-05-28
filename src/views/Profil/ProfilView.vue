@@ -8,7 +8,7 @@
     <ion-content class="ion-padding">
       <ion-row class="ion-justify-content-center">
         <ion-avatar class="">
-          <img alt="Profil picture" src="../assets/jebena.png" />
+          <img alt="Profil picture" src="../../assets/jebena.png" />
         </ion-avatar>
       </ion-row>
       <ion-row class="ion-justify-content-center">
@@ -16,25 +16,20 @@
       </ion-row>
       <br />
       <ion-list :inset="true">
-        <ion-item>
-          <ion-label>Modifier mon profil</ion-label>
+        <ion-item href="./tab4/favorite" class="ion-margin">
+          <ion-label>Mes recettes favorites</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-label>3 recettes favoris</ion-label>
+
+        <ion-item href="#" class="ion-margin">
+          <ion-label>Mes cafés favoris</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-label>4 Coffees Shop</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Mentions légales</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Nous contacter</ion-label>
+        <ion-item href="#" class="ion-margin">
+          <ion-label>Informations légales</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
     <ion-button id="logout-button" class="ion-margin" @click="logout()"
-      >Me déconnecter</ion-button
+      >Déconnexion</ion-button
     >
     <ion-alert v-if="isAlertShown" :buttons="alertButtons"></ion-alert>
   </ion-page>
@@ -44,6 +39,7 @@
 import { defineComponent, reactive } from "vue";
 import { useStore, mapGetters } from "vuex";
 import { toastController, alertController } from "@ionic/vue";
+import { logOutOutline } from "ionicons/icons";
 
 export default defineComponent({
   name: "ProfilView",
@@ -103,6 +99,7 @@ export default defineComponent({
       logout,
       presentToast,
       isAlertShown: showAlert.isAlertShown,
+      logOutOutline,
     };
   },
 });

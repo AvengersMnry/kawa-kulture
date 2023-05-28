@@ -47,10 +47,12 @@
         <ion-card-content class="ion-padding ion-text-center">
           <ion-text>{{ recipe.description }}</ion-text>
           <br />
-          <ion-button fill="outline" color="base" @click="addFavorite(recipe)">
-            <ion-icon
-              :icon="recipe.isFavorite ? heart : heartOutline"
-            ></ion-icon>
+          <ion-button
+            fill="outline"
+            color="base"
+            @click="toggleFavorite(recipe)"
+          >
+            <ion-icon :icon="heart"></ion-icon>
           </ion-button>
         </ion-card-content>
       </ion-card>
@@ -58,7 +60,7 @@
   </ion-page>
 </template>
 <script>
-import { ref, computed, watch } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import recipesData from "../recipes.json";
 import { heartOutline, heart } from "ionicons/icons";
@@ -89,36 +91,9 @@ export default {
       currentCategory.value = category;
     };
 
-    const addFavorite = (recipe) => {
-      if (recipe.isFavorite) {
-        // Supprimer la recette des favoris
-        console.log('IsFavorite: true')
-        store.dispatch("removeRecipeFromFavorite", recipe);
-        recipe.isFavorite = false; // Mettre à jour la propriété isFavorite
-      } else {
-        console.log('isFavorite: false')
-        // Ajouter la recette aux favoris
-        store.dispatch("addRecipeToFavorite", recipe);
-        recipe.isFavorite = true; // Mettre à jour la propriété isFavorite
-      }
+    const toggleFavorite = (recipe) => {
+      store.dispatch("toggleRecipeToFavorite", recipe);
     };
-
-    watch(
-      () => store.state.addRecipeStatus,
-      (newStatus) => {
-        if (newStatus === "success") {
-          // Afficher une confirmation à l'utilisateur
-          alert("Recette ajoutée avec succès !");
-          // Réinitialiser le statut
-          store.commit("ADD_RECIPE_SUCCESS");
-        } else if (newStatus === "failure") {
-          // Afficher un message d'erreur à l'utilisateur
-          alert("Erreur lors de l'ajout de la recette aux favoris !");
-          // Réinitialiser le statut
-          store.commit("ADD_RECIPE_FAILURE");
-        }
-      }
-    );
 
     const getCategories = () => {
       const categories = new Set();
@@ -134,7 +109,7 @@ export default {
       allRecipes,
       currentCategory,
       setCurrentCategory,
-      addFavorite,
+      toggleFavorite,
       getFilteredRecipes,
       getCategories,
       heartOutline,

@@ -12,15 +12,13 @@ import {
   collection,
   addDoc,
   updateDoc,
-  // arrayUnion,
   doc,
-  // setDoc,
   where,
   query,
   getDocs,
 } from "firebase/firestore";
 
-// Constantes pour les mutations
+// Constants for Mutations
 const SET_USER = "SET_USER";
 const SET_USERNAME = "SET_USERNAME";
 const CLEAR_USER = "CLEAR_USER";
@@ -30,7 +28,7 @@ const RESET_PASSWORD_SUCCESS = "resetPasswordSuccess";
 const ADD_RECIPE_SUCCESS = "ADD_RECIPE_SUCCESS";
 const ADD_RECIPE_FAILURE = "ADD_RECIPE_FAILURE";
 
-// Constantes pour les codes d'erreur
+// Constants for error codes
 const ERROR_USER_NOT_FOUND = "auth/user-not-found";
 const ERROR_WRONG_PASSWORD = "auth/wrong-password";
 const ERROR_EMAIL_ALREADY_IN_USE = "auth/email-already-in-use";
@@ -81,16 +79,24 @@ export default createStore({
       state.user.favoriteRecipes.push(recipe.id);
     },
 
-    addRecipeToFavorites(state, recipe) {
-      state.favorites.push(recipe);
+    updateRecipeFavoriteStatus(state, { recipeId, isFavorite }) {
+      const favoriteRecipesFound = state.user.favoriteRecipes;
+
+      for (let i = 0; i < favoriteRecipesFound.length; i++) {
+        const recipe = favoriteRecipesFound[i];
+        if (recipe && recipe.id === recipeId) {
+          recipe.isFavorite = isFavorite;
+          break;
+        }
+      }
     },
 
     [REMOVE_RECIPE_TO_FAVORITE](state, recipe) {
       const index = state.user.favoriteRecipes.findIndex(
-        (r) => r.id === recipe.id
+        (r) => r === recipe.id
       );
       if (index !== -1) {
-        state.favoriteRecipes.splice(index, 1);
+        state.user.favoriteRecipes.splice(index, 1);
       }
     },
 
@@ -109,7 +115,7 @@ export default createStore({
   },
 
   actions: {
-    async login({ commit, state }, details) {
+    async login({ commit, state, dispatch }, details) {
       const { email, password } = details;
 
       try {
@@ -117,10 +123,10 @@ export default createStore({
       } catch (error) {
         switch (error.code) {
           case ERROR_USER_NOT_FOUND:
-            alert("User not found");
+            alert("Uitilisateur inconnu");
             break;
           case ERROR_WRONG_PASSWORD:
-            alert("Wrong password");
+            alert("Oops ! Mot de passe incorrect");
             break;
           default:
             alert("Something went wrong");
@@ -133,6 +139,9 @@ export default createStore({
         const uid = auth.currentUser.uid;
         commit(SET_USER, { ...state.user, uid });
 
+        // Call action to retrieve favorite recipes
+        await dispatch("fetchFavoriteRecipes");
+
         const userDocRef = collection(db, "users");
         // Create a query to filter documents by uid
         const querySnapshot = await getDocs(
@@ -141,10 +150,8 @@ export default createStore({
 
         if (!querySnapshot.empty) {
           const docSnap = querySnapshot.docs[0];
-          const docId = docSnap.id;
+          // const docId = docSnap.id;
           const username = docSnap.data().username;
-
-          console.log(docId + " & " + username);
 
           commit(SET_USERNAME, docSnap);
           commit(SET_USERNAME, username);
@@ -174,7 +181,8 @@ export default createStore({
 
         const docRef = await addDoc(collection(db, "users"), {
           username: username,
-          favoriteRecipes: [], // Ajout du tableau vide
+          // Adding the empty table
+          favoriteRecipes: [],
         });
 
         await updateDoc(doc(db, "users", docRef.id), { uid: uid });
@@ -183,16 +191,16 @@ export default createStore({
 
         switch (error.code) {
           case ERROR_EMAIL_ALREADY_IN_USE:
-            alert("Email already in use");
+            alert("Email déjà utilisé. Connectez-vous");
             break;
           case ERROR_INVALID_EMAIL:
-            alert("Invalid email");
+            alert("Email invalide");
             break;
           case ERROR_OPERATION_NOT_ALLOWED:
             alert("Operation not allowed");
             break;
           case ERROR_WEAK_PASSWORD:
-            alert("Weak password");
+            alert("Mot de passe trop simple");
             break;
           default:
             alert("Something went wrong");
@@ -244,7 +252,7 @@ export default createStore({
       });
     },
 
-    async addRecipeToFavorite({ commit, state }, recipe) {
+    async toggleRecipeToFavorite({ commit, state }, recipe) {
       const user = state.user;
 
       if (user) {
@@ -264,17 +272,27 @@ export default createStore({
               await updateDoc(doc(db, "users", docId), {
                 favoriteRecipes: favoriteRecipes,
               });
+              alert("Ajoutée aux favoris ✅");
               commit(ADD_RECIPE_SUCCESS);
               commit(ADD_FAVORITE_RECIPE, recipe.id);
+              commit("updateRecipeFavoriteStatus", {
+                recipeId: recipe.id,
+                isFavorite: true,
+              });
             } else {
               const index = favoriteRecipes.indexOf(recipe.id);
               if (index !== -1) {
+                alert('Retiré des favoris  ❌');
                 favoriteRecipes.splice(index, 1);
                 await updateDoc(doc(db, "users", docId), {
                   favoriteRecipes: favoriteRecipes,
                 });
                 commit(ADD_RECIPE_SUCCESS);
                 commit(REMOVE_RECIPE_TO_FAVORITE, recipe.id);
+                commit("updateRecipeFavoriteStatus", {
+                  recipeId: recipe.id,
+                  isFavorite: false,
+                });
               }
             }
           } catch (error) {
@@ -289,10 +307,29 @@ export default createStore({
         }
       }
     },
-    
-    async removeRecipeFromFavorite(recipe) {
-      console.log('inside remove function - ' + recipe.id)
-    }
+
+    async fetchFavoriteRecipes({ commit, state }) {
+      const user = state.user;
+
+      if (user) {
+        const userDocRef = collection(db, "users");
+        const querySnapshot = await getDocs(
+          query(userDocRef, where("uid", "==", auth.currentUser.uid))
+        );
+
+        if (!querySnapshot.empty) {
+          const docSnap = querySnapshot.docs[0];
+          // const docId = docSnap.id;
+
+          const favoriteRecipes = docSnap.data().favoriteRecipes || [];
+  
+          // Assign favorite recipes to user status
+          commit(SET_USER, { ...user, favoriteRecipes });
+        } else {
+          console.log("Aucun document ne correspond à la requête !");
+        }
+      }
+    },
   },
 
   getters: {
