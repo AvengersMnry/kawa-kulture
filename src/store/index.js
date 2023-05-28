@@ -282,7 +282,7 @@ export default createStore({
             } else {
               const index = favoriteRecipes.indexOf(recipe.id);
               if (index !== -1) {
-                alert('Retiré des favoris  ❌');
+                alert("Retiré des favoris  ❌");
                 favoriteRecipes.splice(index, 1);
                 await updateDoc(doc(db, "users", docId), {
                   favoriteRecipes: favoriteRecipes,
@@ -322,7 +322,7 @@ export default createStore({
           // const docId = docSnap.id;
 
           const favoriteRecipes = docSnap.data().favoriteRecipes || [];
-  
+
           // Assign favorite recipes to user status
           commit(SET_USER, { ...user, favoriteRecipes });
         } else {
