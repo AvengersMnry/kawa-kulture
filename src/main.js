@@ -27,7 +27,7 @@ import {
   IonAccordionGroup,
   IonAlert,
   IonAvatar,
-  IonBackButton, 
+  IonBackButton,
   IonBadge,
   IonButton,
   IonButtons,
@@ -78,6 +78,8 @@ import {
   IonToggle,
   IonToolbar,
 } from "@ionic/vue";
+
+import './registerServiceWorker'
 
 let appInstance;
 const auth = getAuth(app);
