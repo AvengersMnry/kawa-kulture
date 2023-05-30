@@ -79,8 +79,6 @@ import {
   IonToolbar,
 } from "@ionic/vue";
 
-import './registerServiceWorker'
-
 let appInstance;
 const auth = getAuth(app);
 
