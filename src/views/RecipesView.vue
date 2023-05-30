@@ -8,32 +8,26 @@
 
     <ion-content :fullscreen="true">
       <ion-toolbar>
-        <ion-buttons class="ion-justify-content-center">
-          <ion-button
-            :fill="currentCategory === 'Meal' ? 'outline' : 'clear'"
-            @click="setCurrentCategory('Meal')"
-            :color="currentCategory === 'Meal' ? 'base' : 'medium'"
-            >Plat</ion-button
-          >
-          <ion-button
-            :fill="currentCategory === 'Dessert' ? 'outline' : 'clear'"
+        <ion-segment value="meal">
+          <ion-segment-button value="meal" @click="setCurrentCategory('Meal')">
+            <ion-label>Plat</ion-label>
+          </ion-segment-button>
+          <ion-segment-button
+            value="dessert"
             @click="setCurrentCategory('Dessert')"
-            :color="currentCategory === 'Dessert' ? 'base' : 'medium'"
-            >Dessert</ion-button
           >
-          <ion-button
-            :fill="currentCategory === 'Drink' ? 'outline' : 'clear'"
+            <ion-label>Dessert</ion-label>
+          </ion-segment-button>
+          <ion-segment-button
+            value="drink"
             @click="setCurrentCategory('Drink')"
-            :color="currentCategory === 'Drink' ? 'base' : 'medium'"
-            >Boisson</ion-button
           >
-          <ion-button
-            :fill="currentCategory === 'All' ? 'outline' : 'clear'"
-            @click="setCurrentCategory('All')"
-            :color="currentCategory === 'All' ? 'base' : 'medium'"
-            >Toutes</ion-button
-          >
-        </ion-buttons>
+            <ion-label>Boisson</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="all" @click="setCurrentCategory('All')">
+            <ion-label>Toutes</ion-label>
+          </ion-segment-button>
+        </ion-segment>
       </ion-toolbar>
       <ion-card
         :button="true"
@@ -63,7 +57,7 @@
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import recipesData from "../recipes.json";
-import { heartOutline, heart } from "ionicons/icons";
+import { heart } from "ionicons/icons";
 
 export default {
   name: "RecipesView",
@@ -112,7 +106,6 @@ export default {
       toggleFavorite,
       getFilteredRecipes,
       getCategories,
-      heartOutline,
       heart,
     };
   },
@@ -135,5 +128,9 @@ export default {
 }
 ion-button {
   color: #ff9017;
+}
+ion-segment {
+  --background: rgb(255, 144, 23, 0.5);
+  width: 90%;
 }
 </style>

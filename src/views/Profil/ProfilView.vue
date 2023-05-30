@@ -18,12 +18,13 @@
       <ion-list :inset="true">
         <ion-item href="./tab4/favorite" class="ion-margin">
           <ion-label>Mes recettes favorites</ion-label>
+          <ion-badge>3</ion-badge>
         </ion-item>
 
         <ion-item href="#" class="ion-margin">
           <ion-label>Mes cafés favoris</ion-label>
         </ion-item>
-        <ion-item href="#" class="ion-margin">
+        <ion-item href="./tab4/terms" class="ion-margin">
           <ion-label>Informations légales</ion-label>
         </ion-item>
       </ion-list>
@@ -116,5 +117,9 @@ ion-button {
   color: #f5f5f5;
   font-weight: 500;
   font-size: 1.1em;
+}
+ion-badge {
+  --background: #da7f2b;
+  --color: white;
 }
 </style>

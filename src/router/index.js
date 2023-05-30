@@ -65,6 +65,10 @@ const router = createRouter({
           path: "tab4/favorite",
           component: () => import("@/views/Profil/FavoriteRecipeView.vue"),
         },
+        {
+          path: "tab4/terms",
+          component: () => import("@/views/Profil/TermsView.vue"),
+        },
       ],
     },
   ],

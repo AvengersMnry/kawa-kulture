@@ -53,3 +53,9 @@ export default {
   },
 };
 </script>
+
+<style>
+ion-tab-button.tab-selected {
+  color: #8B4513;
+}
+</style>
