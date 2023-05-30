@@ -2,6 +2,10 @@
   "name": "Kawa Kulture",
   "short_name": "Kawa Kulture",
   "theme_color": "#da7f2b",
+  "background_color": "#000000",
+  "start_url": "/",
+  "display_override": ["fullscreen", "minimal-ui"],
+  "display": "standalone",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
@@ -25,9 +29,5 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ],
-  "start_url": "/",
-  "display_override": ["fullscreen", "minimal-ui"],
-  "display": "standalone",
-  "background_color": "#000000"
+  ]
 }
