@@ -23,8 +23,12 @@ import { createApp } from "vue";
 /*** IMPORT THE COMPONENTS IONIC ***/
 import {
   IonApp,
+  IonAccordion,
+  IonAccordionGroup,
   IonAlert,
   IonAvatar,
+  IonBackButton, 
+  IonBadge,
   IonButton,
   IonButtons,
   IonCard,
@@ -68,6 +72,7 @@ import {
   IonTabButton,
   IonText,
   IonTextarea,
+  IonThumbnail,
   IonTitle,
   IonToast,
   IonToggle,
@@ -83,16 +88,20 @@ auth.onAuthStateChanged(() => {
 
     /*** GLOBAL REGISTRATION OF ALL IONIC COMPONENTS ***/
     appInstance.component("ion-app", IonApp);
+    appInstance.component("ion-accordion", IonAccordion);
+    appInstance.component("ion-accordion-group", IonAccordionGroup);
     appInstance.component("ion-alert", IonAlert);
     appInstance.component("ion-avatar", IonAvatar);
+    appInstance.component("ion-back-button", IonBackButton);
+    appInstance.component("ion-badge", IonBadge);
+    appInstance.component("ion-button", IonButton);
+    appInstance.component("ion-col", IonCol);
     appInstance.component("ion-grid", IonGrid);
     appInstance.component("ion-row", IonRow);
-    appInstance.component("ion-col", IonCol);
     appInstance.component("ion-select", IonSelect);
     appInstance.component("ion-select-option", IonSelectOption);
     appInstance.component("ion-text", IonText);
     appInstance.component("ion-label", IonLabel);
-    appInstance.component("ion-button", IonButton);
     appInstance.component("ion-loading", IonLoading);
     appInstance.component("ion-textarea", IonTextarea);
     appInstance.component("ion-radio", IonRadio);
@@ -130,11 +139,12 @@ auth.onAuthStateChanged(() => {
     appInstance.component("ion-card", IonCard);
     appInstance.component("ion-card-title", IonCardTitle);
     appInstance.component("ion-card-header", IonCardHeader);
-        appInstance.component("ion-card-content", IonCardContent);
+    appInstance.component("ion-card-content", IonCardContent);
 
     appInstance.component("ion-tabs", IonTabs);
     appInstance.component("ion-tab-bar", IonTabBar);
     appInstance.component("ion-tab-button", IonTabButton);
+    appInstance.component("ion-thumbnail", IonThumbnail);
     appInstance
       .component("ion-toast", IonToast)
 
