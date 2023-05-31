@@ -7,10 +7,8 @@ const auth = getAuth();
 const requireAuth = (to, from, next) => {
   let user = auth.currentUser;
   if (!user) {
-    console.log("Non connecté(e)");
     next({ name: "LandingView" });
   } else {
-    console.log("Connecté(e)" + user.uid);
     next();
   }
 };
@@ -61,7 +59,15 @@ const router = createRouter({
         },
         {
           path: "tab4",
-          component: () => import("@/views/ProfilView.vue"),
+          component: () => import("@/views/Profil/ProfilView.vue"),
+        },
+        {
+          path: "tab4/favorite",
+          component: () => import("@/views/Profil/FavoriteRecipeView.vue"),
+        },
+        {
+          path: "tab4/terms",
+          component: () => import("@/views/Profil/TermsView.vue"),
         },
       ],
     },
