@@ -2,15 +2,12 @@
   <ion-page>
     <ion-content class="bg-orange">
       <img src="../../public/img/arabica.png" alt="Branche de caféier" />
-      <ion-button
-        fill="outline"
-        shape="round"
+      <ion-icon
+        :icon="chevronBackOutline"
         color="light"
-        class="back-arrow"
+        size="large"
         @click="$router.back()"
-      >
-        <i class="fa-solid fa-chevron-left"></i>
-      </ion-button>
+      ></ion-icon>
       <h1>Ravi de vous revoir</h1>
       <h2>Un café ? ☕️</h2>
 
@@ -99,13 +96,13 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
+import { chevronBackOutline } from "ionicons/icons";
 
 export default defineComponent({
   name: "LoginView",
   components: {},
   setup() {
     const store = useStore();
-
     const handleConnexion = ref({});
     const showModal = ref(false);
     const showToast = ref(false);
@@ -146,6 +143,7 @@ export default defineComponent({
       openModal,
       closeModal,
       showToast,
+      chevronBackOutline,
     };
   },
 });
@@ -180,5 +178,11 @@ a {
 
 .btn {
   --background: #436a31;
+}
+
+ion-icon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
 </style>
