@@ -23,9 +23,3 @@ body {
     --background: transparent;
     background-color: #ff9017;
 }
-
-.back-arrow {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}

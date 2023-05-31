@@ -2,14 +2,12 @@
   <ion-page>
     <ion-content class="bg-orange">
       <img src="../../public/img/arabica.png" alt="Branche de caféier" />
-      <ion-button
-        fill="outline"
-        shape="round"
+      <ion-icon
+        :icon="chevronBackOutline"
         color="light"
-        class="back-arrow"
+        size="large"
         @click="$router.back()"
-        ><i class="fa-solid fa-chevron-left"></i
-      ></ion-button>
+      ></ion-icon>
       <h1>Bienvenue sur <strong>Kawa !</strong></h1>
       <h2>Commençons votre inscription</h2>
 
@@ -74,6 +72,8 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
+import { chevronBackOutline } from "ionicons/icons";
+
 export default defineComponent({
   name: "SignupView",
   components: {},
@@ -82,7 +82,6 @@ export default defineComponent({
 
     const handleRegistration = ref({
       accepted_terms: false,
-      remember_me: false,
     });
 
     const register = () => {
@@ -92,6 +91,7 @@ export default defineComponent({
     return {
       handleRegistration,
       register,
+      chevronBackOutline,
     };
   },
 });
@@ -137,5 +137,11 @@ ion-checkbox::part(container) {
 
 ion-button {
   --background: #436a31;
+}
+
+ion-icon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
 }
 </style>
