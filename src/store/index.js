@@ -272,17 +272,16 @@ export default createStore({
               await updateDoc(doc(db, "users", docId), {
                 favoriteRecipes: favoriteRecipes,
               });
-              alert("Ajoutée aux favoris ✅");
               commit(ADD_RECIPE_SUCCESS);
               commit(ADD_FAVORITE_RECIPE, recipe.id);
               commit("updateRecipeFavoriteStatus", {
                 recipeId: recipe.id,
                 isFavorite: true,
               });
+              return "added";
             } else {
               const index = favoriteRecipes.indexOf(recipe.id);
               if (index !== -1) {
-                alert("Retiré des favoris  ❌");
                 favoriteRecipes.splice(index, 1);
                 await updateDoc(doc(db, "users", docId), {
                   favoriteRecipes: favoriteRecipes,
@@ -293,6 +292,7 @@ export default createStore({
                   recipeId: recipe.id,
                   isFavorite: false,
                 });
+                return "removed";
               }
             }
           } catch (error) {
