@@ -7,8 +7,7 @@
     </ion-header>
 
     <ion-content :fullscreen="true">
-      <ion-toolbar>
-        <ion-segment value="meal">
+        <ion-segment value="meal" class="ion-margin-horizontal">
           <ion-segment-button value="meal" @click="setCurrentCategory('Meal')">
             <ion-label>Plat</ion-label>
           </ion-segment-button>
@@ -28,7 +27,6 @@
             <ion-label>Toutes</ion-label>
           </ion-segment-button>
         </ion-segment>
-      </ion-toolbar>
       <ion-card
         :button="true"
         v-for="recipe in getFilteredRecipes"

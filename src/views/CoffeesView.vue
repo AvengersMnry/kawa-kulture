@@ -6,7 +6,12 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <!-- <img src="./marker.png" alt="" style="width: 50px; height: 50px" /> -->
+      <ion-text color="warning" class="ion-text-center">
+        <h5 class="ion-margin-horizontal">
+          Envie de déguster un bon café ?<br />Découvrez vos coffee shop aux
+          alentours !
+        </h5>
+      </ion-text>
       <ion-list>
         <ion-item>
           <ion-select
@@ -46,88 +51,114 @@ export default {
         document.getElementById("map"),
         mapOptions
       );
-      console.log(map);
 
       const coffees = [
         {
           address: "29 Rue Notre-Dame, 33000 Bordeaux",
           name: "La Pelle Café",
-          position: {
-            lat: 44.850514,
-            lng: -0.5721549,
-          },
+          position: { lat: 44.850514, lng: -0.5721549 },
+          hours: "Du mardi au dimanche",
+          phone: "05 56 81 69 24",
         },
         {
           address: "12 Rue de la Vieille Tour, 33000 Bordeaux",
           name: "L'Alchimiste",
-          position: {
-            lat: 44.84139584905551,
-            lng: -0.579492231780917
-          },
+          position: { lat: 44.84139584905551, lng: -0.579492231780917 },
+          hours: "Du mardi au samedi",
+          phone: "09 86 48 37 93",
         },
         {
           address: "24 Rue des Ayres, 33000 Bordeaux",
           name: "Verde Nero",
-          position: {
-            lat: 44.83686469923543,
-            lng: -0.5733389759595543
-          }
+          position: { lat: 44.83686469923543, lng: -0.5733389759595543 },
+          hours: "Tous les jours",
+          phone: "05 57 34 46 41",
         },
         {
           address: "69 Rue des Ayres, 33000 Bordeaux",
           name: "Café Piha",
-          position: {
-            lat: 44.83702021490446,
-            lng: -0.574952702945452
-          }
+          position: { lat: 44.83702021490446, lng: -0.574952702945452 },
+          hours: "Du mardi au samedi",
+          phone: "/",
         },
         {
           address: "15 Rue des Argentiers, 33000 Bordeaux",
           name: "Cafeincup",
-          position: {
-            lat: 44.839425416870775, 
-            lng: -0.5701111452739607
-          }
+          position: { lat: 44.839425416870775, lng: -0.5701111452739607 },
+          hours: "Tous les jours",
+          phone: "09 86 23 69 34",
         },
         {
           address: "16 Av. Thiers, 33100 Bordeaux",
           name: "Matsa Café",
-          position: {
-            lat: 44.84146775624686,
-            lng: -0.5586462876025271
-          }
+          position: { lat: 44.84146775624686, lng: -0.5586462876025271 },
+          hours: "Du lundi au vendredi",
+          phone: "09 73 88 42 49",
         },
         {
           address: "51 Cr. de la Marne, 33800 Bordeaux",
           name: "Oven Heaven",
-          position: { lat: 44.83253943733222, lng: -0.5697165628224697}
+          position: { lat: 44.83253943733222, lng: -0.5697165628224697 },
+          hours: "Du mardi au dimanche",
+          phone: "05 56 91 81 37",
+        },
+        {
+          address: "69 Bis Rue des Trois-Conils, 33000 Bordeaux",
+          name: "SIP Coffee Bar",
+          position: { lat: 44.83987019827774, lng: -0.5783888595009294 },
+          hours: "Du lundi au samedi",
+          phone: "09 81 91 91 80",
         },
         {
           address: "33 Rue Gaspard Philippe, 33800 Bordeaux",
           name: "Michel MaBelle",
-          position: { lat: 44.83311957528115, lng: -0.5670210029456424}
-        }
+          position: { lat: 44.83311957528115, lng: -0.5670210029456424 },
+          hours: "Du mercredi au dimanche",
+          phone: "05 57 67 34 39",
+        },
+        {
+          address: "5 Rue Mautrec, 33000 Bordeaux",
+          name: "KURO Espresso Bar",
+          position: { lat: 44.84328977981884, lng: -0.5750728726661507 },
+          hours: "Du mardi au samedi",
+          phone: "/",
+        },
       ];
-    
-      coffees.forEach((coffee) => {
-        const marker = new window.google.maps.Marker({
-          position: coffee.position,
-          map,
-          title: coffee.name,
-          icon: {
-            url: "https://apollotrails.com/staridas-geography-2019/css/icons/Coffee.png",
-            scaledSize: new window.google.maps.Size(35,50), // scaled size
-            origin: new window.google.maps.Point(0, 0), // origin
-            anchor: new window.google.maps.Point(0, 0), // anchor
-          },
-        });
 
-        marker.addListener("click", () => {
-          // Afficher la carte de présentation du restaurant avec son nom
-          // Vous pouvez utiliser une librairie de modals, telles que 'ionic-modal' pour afficher le contenu souhaité.
-          alert(coffee.name);
+      const initializeMarkers = () => {
+        coffees.forEach((coffee) => {
+          const marker = new window.google.maps.Marker({
+            position: coffee.position,
+            map,
+            title: coffee.name,
+            icon: {
+              url: "https://apollotrails.com/staridas-geography-2019/css/icons/Coffee.png",
+              scaledSize: new window.google.maps.Size(35, 50),
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(0, 0),
+            },
+          });
+
+          const infoWindow = new window.google.maps.InfoWindow();
+
+          marker.addListener("click", () => {
+            const content = `
+              <div style="width: 200px;">
+                <h2>${coffee.name}</h2>
+                <p>${coffee.address}</p>
+                <p><em>${coffee.hours}</em></p>
+                <a href="tel:${coffee.phone}">${coffee.phone}</a>
+              </div>
+            `;
+
+            infoWindow.close();
+            infoWindow.setContent(content);
+            infoWindow.open(marker.map, marker);
+          });
         });
-      });
+      };
+
+      initializeMarkers();
     });
 
     return {};
@@ -138,7 +169,11 @@ export default {
 <style>
 #map {
   width: 100%;
-  height: 700px;
+  height: 500px;
   background: #d6d6d6;
+}
+ion-select {
+  width: 50%;
+  margin: auto;
 }
 </style>
