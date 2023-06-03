@@ -16,15 +16,15 @@
       </ion-row>
       <br />
       <ion-list :inset="true">
-        <ion-item href="./tab4/favorite" class="ion-margin">
+        <ion-item detail="true" href="./tab4/favorite" class="ion-margin">
           <ion-label>Mes recettes favorites</ion-label>
           <ion-badge>3</ion-badge>
         </ion-item>
 
-        <ion-item href="#" class="ion-margin">
+        <ion-item detail="true" href="#" class="ion-margin">
           <ion-label>Mes cafés favoris</ion-label>
         </ion-item>
-        <ion-item href="./tab4/terms" class="ion-margin">
+        <ion-item detail="true" href="./tab4/terms" class="ion-margin">
           <ion-label>Informations légales</ion-label>
         </ion-item>
       </ion-list>
