@@ -6,12 +6,6 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <ion-text color="warning" class="ion-text-center">
-        <h5 class="ion-margin-horizontal">
-          Envie de déguster un bon café ?<br />Découvrez vos coffee shop aux
-          alentours !
-        </h5>
-      </ion-text>
       <ion-list>
         <ion-item>
           <ion-select
@@ -46,11 +40,20 @@ export default {
       const mapOptions = {
         center: { lat: 44.83873554192924, lng: -0.5620387918467384 },
         zoom: 13,
+        disableDefaultUI: true,
+        mapTypeControl: false, // Désactive le contrôle du type de carte
+        streetViewControl: false, // Désactive le contrôle Street View
+        fullscreenControl: false, // Désactive le contrôle plein écran
+        mapTypeId: window.google.maps.MapTypeId.ROADMAP,
       };
       map = new window.google.maps.Map(
         document.getElementById("map"),
         mapOptions
       );
+      // Masquer les mentions par défaut
+      map.setOptions({
+        styles: [{ featureType: "poi", stylers: [{ visibility: "off" }] }],
+      });
 
       const coffees = [
         {
