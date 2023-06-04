@@ -6,24 +6,26 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
-      <ion-list>
-        <ion-item>
-          <ion-select
-            aria-label="City"
-            interface="popover"
-            placeholder="Sélectionne ta ville"
-          >
-            <ion-select-option value="bordeaux">Bordeaux</ion-select-option>
-            <ion-select-option disabled value="paris"
-              >Paris (bientôt 😃)</ion-select-option
-            >
-            <ion-select-option disabled value="lyon"
-              >Lyon (bientôt 😃)</ion-select-option
-            >
-          </ion-select>
-        </ion-item>
-      </ion-list>
       <div id="map"></div>
+      <div id="select-input">
+        <ion-list class="ion-no-padding">
+          <ion-item>
+            <ion-select
+              aria-label="City"
+              interface="popover"
+              placeholder="Sélectionne ta ville"
+            >
+              <ion-select-option value="bordeaux">Bordeaux</ion-select-option>
+              <ion-select-option disabled value="paris"
+                >Paris (bientôt 😃)</ion-select-option
+              >
+              <ion-select-option disabled value="lyon"
+                >Lyon (bientôt 😃)</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -41,16 +43,16 @@ export default {
         center: { lat: 44.83873554192924, lng: -0.5620387918467384 },
         zoom: 13,
         disableDefaultUI: true,
-        mapTypeControl: false, // Désactive le contrôle du type de carte
-        streetViewControl: false, // Désactive le contrôle Street View
-        fullscreenControl: false, // Désactive le contrôle plein écran
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
         mapTypeId: window.google.maps.MapTypeId.ROADMAP,
       };
       map = new window.google.maps.Map(
         document.getElementById("map"),
         mapOptions
       );
-      // Masquer les mentions par défaut
+
       map.setOptions({
         styles: [{ featureType: "poi", stylers: [{ visibility: "off" }] }],
       });
@@ -146,7 +148,7 @@ export default {
 
           marker.addListener("click", () => {
             const content = `
-              <div style="width: 200px;">
+              <div style="width: 150px;height: 100px;padding: 2px">
                 <h2>${coffee.name}</h2>
                 <p>${coffee.address}</p>
                 <p><em>${coffee.hours}</em></p>
@@ -172,11 +174,19 @@ export default {
 <style>
 #map {
   width: 100%;
-  height: 500px;
+  height: 100vh;
   background: #d6d6d6;
 }
-ion-select {
-  width: 50%;
-  margin: auto;
+#select-input {
+  position: absolute;
+  top: 5rem;
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+}
+ion-list {
+  border-radius: 10px;
+  border: 1px solid orange;
+  /* padding-top: 0; */
 }
 </style>
