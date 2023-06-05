@@ -195,6 +195,7 @@ export default {
                     <p>${coffee.address}</p>
                     <p><em>${coffee.hours}</em></p>
                     <a href="tel:${coffee.phone}">${coffee.phone}</a>
+                    <button @click="openDirections('${coffee.position.lat}', '${coffee.position.lng}')">Go</button>
                   </ion-card-content>
                 </ion-card>
               `;
@@ -249,7 +250,26 @@ export default {
       }
     });
 
-    return {};
+    const openDirections = (lat, lng) => {
+      const destination = `${lat},${lng}`;
+      const platform = navigator.platform.toLowerCase();
+
+      if (platform.includes("iphone") || platform.includes("ipad")) {
+        window.open(
+          `maps://maps.google.com/maps?daddr=${destination}`,
+          "_blank"
+        );
+      } else {
+        window.open(
+          `https://www.google.com/maps/dir/?api=1&destination=${destination}`,
+          "_blank"
+        );
+      }
+    };
+
+    return {
+      openDirections,
+    };
   },
 };
 </script>
