@@ -16,13 +16,14 @@
               interface="popover"
               placeholder="Sélectionne ta ville"
               value="bordeaux"
+              class="ion-padding-right"
             >
               <ion-select-option value="bordeaux">Bordeaux</ion-select-option>
               <ion-select-option disabled value="paris"
-                >Paris (bientôt 😃)</ion-select-option
+                >Paris bientôt 😃</ion-select-option
               >
               <ion-select-option disabled value="lyon"
-                >Lyon (bientôt 😃)</ion-select-option
+                >Lyon bientôt 😃</ion-select-option
               >
             </ion-select>
           </ion-item>
