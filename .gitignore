@@ -1,12 +1,10 @@
 .DS_Store
 node_modules
 /dist
-src/firebase/firebaseConfig.js
-/src/firebase/firebaseConfig
 
 # local env files
-.env.local
-.env.*.local
+src/firebase/firebaseConfig.js
+/src/firebase/firebaseConfig
 
 # Log files
 npm-debug.log*
