@@ -178,27 +178,26 @@ export default {
               const content = `
                 <style>
                   .card-container {
-                    max-width: 200px;
+                    text-align: center;
                   }
-
-                  .card-image {
-                    width: 100%;
-                    height: 100%;
+                  .card-container img {
+                    min-width: 100%;
+                    max-height: 300px;
                     object-fit: cover;
+                    margin: 0px;
                   }
                 </style>
-                <ion-card class="card-container">
-                  <img class="card-image" alt="Image de l'établissement" src="${coffee.img_url}" />
-                  <ion-card-header>
-                    <ion-card-title>${coffee.name}</ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <p>${coffee.address}</p>
-                    <p><em>${coffee.hours}</em></p>
-                    <a href="tel:${coffee.phone}">${coffee.phone}</a>
-                    <button @click="openDirections('${coffee.position.lat}', '${coffee.position.lng}')">Go</button>
-                  </ion-card-content>
-                </ion-card>
+                  <ion-card class="card-container">
+                    <img alt="Image de l'établissement" src="${coffee.img_url}" />
+                    <ion-card-header>
+                      <ion-card-title>${coffee.name}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <p>${coffee.address}</p>
+                      <p><em>${coffee.hours}</em></p>
+                      <a href="tel:${coffee.phone}">${coffee.phone}</a>
+                    </ion-card-content>
+                  </ion-card>
               `;
 
               infoWindow.close();
@@ -251,26 +250,7 @@ export default {
       }
     });
 
-    const openDirections = (lat, lng) => {
-      const destination = `${lat},${lng}`;
-      const platform = navigator.platform.toLowerCase();
-
-      if (platform.includes("iphone") || platform.includes("ipad")) {
-        window.open(
-          `maps://maps.google.com/maps?daddr=${destination}`,
-          "_blank"
-        );
-      } else {
-        window.open(
-          `https://www.google.com/maps/dir/?api=1&destination=${destination}`,
-          "_blank"
-        );
-      }
-    };
-
-    return {
-      openDirections,
-    };
+    return {};
   },
 };
 </script>
@@ -291,5 +271,21 @@ export default {
 ion-list {
   border-radius: 10px;
   border: 1px solid orange;
+}
+.gm-style-iw {
+  padding: 0 !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.gm-style-iw .iw-content {
+  padding: 0 !important;
+  background-color: white !important;
+  border-radius: 10px;
+  border: 1px solid orange;
+}
+.gm-style img {
+  max-width: 0;
 }
 </style>
