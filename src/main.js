@@ -13,7 +13,7 @@ import "@ionic/vue/css/display.css";
 /*** END FRAMEWORK IONIC ***/
 
 import { getAuth } from "firebase/auth";
-import { app } from "../src/firebase";
+import { app } from "./firebase/firebaseConfig";
 import router from "./router";
 import App from "./App.vue";
 import store from "./store";
