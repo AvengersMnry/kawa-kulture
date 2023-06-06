@@ -32,14 +32,21 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Installation
 
-Start with cloning this repo on your local machine:
+1. Start with cloning this repo on your local machine :
 
 ```sh
 $ git clone https://github.com/AvengersMnry/kawa-kulture
 $ cd kawa-kulture
 ```
 
-To install and set up the library, run:
+2. Set up the configuration file :
+
+```sh
+Create it by copying the existing `firebaseConfig.template.js` and name it simply `firebaseConfig.js`
+Then, replace the config values send to you inside an crypted files by email
+```
+
+3. Install and set up the library, run :
 
 ```
 $ npm install
