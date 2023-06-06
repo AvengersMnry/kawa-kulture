@@ -34,7 +34,9 @@
 </template>
 
 <script>
+import { createApp } from "vue";
 import { onMounted } from "vue";
+import CoffeeCard from "./CoffeeCard.vue";
 
 export default {
   name: "CoffeesView",
@@ -119,7 +121,7 @@ export default {
               hours: "Du lundi au vendredi",
               phone: "09 73 88 42 49",
               img_url:
-                "https://media-cdn.tripadvisor.com/media/photo-s/23/f1/81/cb/notre-terrasse-ensoleillee.jpg",
+                "https://www.bordeauxtendances.fr/wp-content/uploads/2022/02/Matsa-Caff%C3%A8-cantine-v%C3%A9g%C3%A9tarienne-vegan-Bordeaux-1024x579.jpg",
             },
             {
               address: "51 Cr. de la Marne",
@@ -175,34 +177,14 @@ export default {
             const infoWindow = new window.google.maps.InfoWindow();
 
             marker.addListener("click", () => {
-              const content = `
-                <style>
-                  .card-container {
-                    text-align: center;
-                  }
-                  .card-container img {
-                    min-width: 100%;
-                    max-height: 300px;
-                    object-fit: cover;
-                    margin: 0px;
-                  }
-                </style>
-                  <ion-card class="card-container">
-                    <img alt="Image de l'établissement" src="${coffee.img_url}" />
-                    <ion-card-header>
-                      <ion-card-title>${coffee.name}</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <p>${coffee.address}</p>
-                      <p><em>${coffee.hours}</em></p>
-                      <a href="tel:${coffee.phone}">${coffee.phone}</a>
-                    </ion-card-content>
-                  </ion-card>
-              `;
+              const coffeeCardApp = createApp(CoffeeCard, { coffee });
+              const coffeeCardComponent = coffeeCardApp.mount(
+                document.createElement("div")
+              );
 
-              infoWindow.close();
+              const content = coffeeCardComponent.$el.outerHTML;
               infoWindow.setContent(content);
-              infoWindow.open(marker.map, marker);
+              infoWindow.open(map, marker);
             });
           });
         };

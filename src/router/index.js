@@ -51,7 +51,7 @@ const router = createRouter({
         },
         {
           path: "tab2",
-          component: () => import("@/views/CoffeesView.vue"),
+          component: () => import("@/views/CoffeeMap/CoffeesView.vue"),
         },
         {
           path: "tab3",
