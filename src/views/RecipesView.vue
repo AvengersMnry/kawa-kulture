@@ -7,26 +7,24 @@
     </ion-header>
 
     <ion-content :fullscreen="true">
-        <ion-segment value="meal" class="ion-margin-horizontal">
-          <ion-segment-button value="meal" @click="setCurrentCategory('Meal')">
-            <ion-label>Plat</ion-label>
-          </ion-segment-button>
-          <ion-segment-button
-            value="dessert"
-            @click="setCurrentCategory('Dessert')"
-          >
-            <ion-label>Dessert</ion-label>
-          </ion-segment-button>
-          <ion-segment-button
-            value="drink"
-            @click="setCurrentCategory('Drink')"
-          >
-            <ion-label>Boisson</ion-label>
-          </ion-segment-button>
-          <ion-segment-button value="all" @click="setCurrentCategory('All')">
-            <ion-label>Toutes</ion-label>
-          </ion-segment-button>
-        </ion-segment>
+      <ion-segment value="meal" class="ion-margin">
+        <ion-segment-button value="meal" @click="setCurrentCategory('Meal')">
+          <ion-label>Plat</ion-label>
+        </ion-segment-button>
+        <ion-segment-button
+          value="dessert"
+          @click="setCurrentCategory('Dessert')"
+        >
+          <ion-label>Dessert</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="drink" @click="setCurrentCategory('Drink')">
+          <ion-label>Boisson</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="all" @click="setCurrentCategory('All')">
+          <ion-label>Toutes</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
       <ion-card
         :button="true"
         v-for="recipe in getFilteredRecipes"
@@ -146,7 +144,10 @@ export default {
 .ion-color-base {
   --ion-color-base: var(--ion-color-base);
 }
-
+ion-card {
+  width: 90%;
+  margin: auto;
+}
 .recipe-img {
   min-width: 100%;
   max-height: 300px;
