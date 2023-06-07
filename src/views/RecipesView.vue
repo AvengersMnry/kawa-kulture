@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title type="ios">Idées recettes</ion-title>
+        <ion-title type="ios" class="ion-text-center">Idées recettes</ion-title>
       </ion-toolbar>
     </ion-header>
 

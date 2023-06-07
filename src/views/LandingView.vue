@@ -50,6 +50,13 @@ img {
   margin-top: 2rem;
 }
 
+.bg-img {
+  height: 100vh;
+  background-image: url("../assets/img/cup_landing.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 ion-button {
   --background: #da7f2b;
   font-weight: 500;
@@ -64,10 +71,5 @@ ion-content {
 
 ion-row {
   margin-top: 18rem;
-}
-
-ion-text {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 </style>
