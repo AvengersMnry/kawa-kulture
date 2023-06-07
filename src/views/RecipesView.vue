@@ -7,7 +7,7 @@
     </ion-header>
 
     <ion-content :fullscreen="true">
-      <ion-segment value="meal" class="ion-margin">
+      <ion-segment value="meal">
         <ion-segment-button value="meal" @click="setCurrentCategory('Meal')">
           <ion-label>Plat</ion-label>
         </ion-segment-button>
@@ -158,6 +158,8 @@ ion-button {
 }
 ion-segment {
   --background: rgb(255, 144, 23, 0.5);
-  width: 90%;
+  /* width: 90%; */
+  margin: 10px auto;
+  justify-content: flex-start;
 }
 </style>
