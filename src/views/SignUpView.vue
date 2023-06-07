@@ -98,6 +98,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.bg-orange {
+  --background: transparent;
+  background-color: #ff9017;
+}
+
 ion-item {
   width: 75%;
   margin: 0 auto;

@@ -3,23 +3,7 @@
     margin: 0;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 #app {
     height: 100vh;
     text-align: center;
-}
-
-.bg-img {
-    height: 100vh;
-    background-image: url("./img/cup_landing.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.bg-orange {
-    --background: transparent;
-    background-color: #ff9017;
 }
