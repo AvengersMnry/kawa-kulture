@@ -14,7 +14,7 @@ body {
 
 .bg-img {
     height: 100vh;
-    background-image: url("./img/cup_landing.jpg");
+    background-image: url("./img/cup_landing.webp");
     background-repeat: no-repeat;
     background-size: cover;
 }

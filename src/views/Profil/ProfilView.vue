@@ -8,7 +8,7 @@
     <ion-content class="ion-padding">
       <ion-row class="ion-justify-content-center">
         <ion-avatar class="">
-          <img alt="Profil picture" src="../../assets/jebena.png" />
+          <img alt="Profil picture" src="../../assets/jebena.webp" />
         </ion-avatar>
       </ion-row>
       <ion-row class="ion-justify-content-center">
