@@ -57,6 +57,7 @@ import {
   IonPage,
   IonPopover,
   IonProgressBar,
+  IonRange,
   IonRadio,
   IonRadioGroup,
   IonRouterOutlet,
@@ -97,6 +98,7 @@ auth.onAuthStateChanged(() => {
     appInstance.component("ion-button", IonButton);
     appInstance.component("ion-col", IonCol);
     appInstance.component("ion-grid", IonGrid);
+    appInstance.component("ion-range", IonRange);
     appInstance.component("ion-row", IonRow);
     appInstance.component("ion-select", IonSelect);
     appInstance.component("ion-select-option", IonSelectOption);
