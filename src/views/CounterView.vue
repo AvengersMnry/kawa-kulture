@@ -25,8 +25,8 @@
       <ion-toast
         v-if="showToast"
         :message="toastMessage"
-        duration="3000"
-        position="middle"
+        duration="2500"
+        position="bottom"
         @ionToastDidDismiss="showToast = false"
       ></ion-toast>
     </ion-content>
@@ -114,7 +114,6 @@ ion-range {
   --bar-height: 4px;
   --bar-background: white;
 }
-
 .coffee-counter {
   display: flex;
   flex-direction: column;
@@ -122,7 +121,6 @@ ion-range {
   justify-content: center;
   margin-top: 20px;
 }
-
 .coffee-image {
   width: 200px;
   height: 200px;
