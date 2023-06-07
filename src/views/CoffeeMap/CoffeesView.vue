@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Coffee Shop</ion-title>
+        <ion-title class="ion-text-center">Coffee Shop</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
