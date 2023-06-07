@@ -3,7 +3,7 @@
     <div class="bg-img">
       <ion-content class="ion-margin-top">
         <img
-          src="../assets/logos/white_logo_transparent_background.png"
+          src="../assets/logos/logo_transparent_background.webp"
           alt="Logo"
         />
         <ion-text class="ion-margin" color="light">

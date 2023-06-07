@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content class="bg-orange">
-      <img src="../../public/img/arabica.png" alt="Branche de caféier" />
+      <img src="../assets/img/arabica.webp" alt="Branche de caféier" />
       <ion-icon
         :icon="chevronBackOutline"
         color="light"

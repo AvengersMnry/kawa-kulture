@@ -23,7 +23,7 @@
         </ion-item>
       </ion-list>
       <img
-        src="../../../public/img/coffee_bean.png"
+        src="../../assets/img/coffee_bean.webp"
         alt="Illustration of coffee bean"
         class="illustration"
       />
