@@ -146,7 +146,7 @@ export default {
 }
 ion-card {
   width: 90%;
-  margin: auto;
+  margin: 10px auto;
 }
 .recipe-img {
   min-width: 100%;
