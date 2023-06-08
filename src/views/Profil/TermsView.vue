@@ -3,7 +3,7 @@
     <ion-header>
       <ion-toolbar>
         <ion-buttons>
-          <ion-back-button default-href="/tabs/tab4"></ion-back-button>
+          <ion-back-button text="Retour" default-href="/tabs/tab4"></ion-back-button>
         </ion-buttons>
         <ion-title>Informations légales</ion-title>
       </ion-toolbar>
