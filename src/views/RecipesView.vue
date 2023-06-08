@@ -2,12 +2,15 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title type="ios" class="ion-text-center">Idées recettes</ion-title>
+        <ion-title class="ion-text-center">Idées recettes</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true">
       <ion-segment value="meal">
+        <ion-segment-button value="drink" @click="setCurrentCategory('Drink')">
+          <ion-label>Boisson</ion-label>
+        </ion-segment-button>
         <ion-segment-button value="meal" @click="setCurrentCategory('Meal')">
           <ion-label>Plat</ion-label>
         </ion-segment-button>
@@ -16,9 +19,6 @@
           @click="setCurrentCategory('Dessert')"
         >
           <ion-label>Dessert</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="drink" @click="setCurrentCategory('Drink')">
-          <ion-label>Boisson</ion-label>
         </ion-segment-button>
         <ion-segment-button value="all" @click="setCurrentCategory('All')">
           <ion-label>Toutes</ion-label>

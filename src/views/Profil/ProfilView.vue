@@ -21,7 +21,7 @@
           <ion-badge>3</ion-badge>
         </ion-item>
 
-        <ion-item detail="true" href="#" class="ion-margin">
+        <ion-item detail="true" href="#" disabled class="ion-margin">
           <ion-label>Mes cafés favoris</ion-label>
         </ion-item>
         <ion-item detail="true" href="./tab4/terms" class="ion-margin">

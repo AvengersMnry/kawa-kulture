@@ -163,7 +163,7 @@ export default createStore({
       }
 
       commit(SET_USER, state.user);
-      router.push("/tabs/tab4");
+      router.push("/tabs/tab2");
     },
 
     async register({ commit, state }, details) {
@@ -211,7 +211,7 @@ export default createStore({
       commit(SET_USER, state.user);
       commit(SET_USERNAME, username);
 
-      router.push("/tabs/tab4");
+      router.push("/tabs/tab2");
     },
 
     init({ commit }) {

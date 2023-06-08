@@ -12,7 +12,7 @@
       <h4>1 espresso = 80 mg de caféine</h4>
 
       <div class="coffee-counter">
-        <img src="../assets/img/cup_coffee.png" alt="Cup of coffee" />
+        <img src="../assets/img/cup_coffee.webp" alt="Cup of coffee" />
         <h3>{{ coffeeCount }} mg de café</h3>
         <ion-button @click="incrementCoffee" expand="block" class="addButton"
           >Ajouter une tasse</ion-button
